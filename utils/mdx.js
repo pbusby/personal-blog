@@ -5,22 +5,24 @@ import { bundleMDX } from "mdx-bundler";
 
 export const POSTS_PATH = path.join(process.cwd(), "data/posts");
 
-export const getSourceOfFile = (fileName) => {
-  return fs.readFileSync(path.join(POSTS_PATH, fileName));
+export const getSourceOfFile = (folderName) => {
+  console.log(path.join(POSTS_PATH, '/', folderName, '/', folderName + '.mdx'));
+  return fs.readFileSync(path.join(POSTS_PATH, '/', folderName, '/', folderName + '.mdx'));
 };
 
 export const getAllPosts = () => {
 
-  console.log(POSTS_PATH)
-  console.log(fs.readdirSync(POSTS_PATH))
+  console.log(fs
+    .readdirSync(POSTS_PATH)
+    .filter((file) => {
+      return fs.statSync(POSTS_PATH+'/'+file).isDirectory();
+    }));
 
-  const foldersArray = fs.readdirSync(POSTS_PATH)
-  foldersArray.forEach((folderName) => {
-
-  })
   return fs
     .readdirSync(POSTS_PATH)
-    .filter((path) => /\.mdx?$/.test(path))
+    .filter((file) => {
+      return fs.statSync(POSTS_PATH+'/'+file).isDirectory();
+    })
     .map((fileName) => {
       const source = getSourceOfFile(fileName);
       const slug = fileName.replace(/\.mdx?$/, "");
@@ -34,10 +36,10 @@ export const getAllPosts = () => {
 };
 
 export const getSinglePost = async (slug) => {
-  const source = getSourceOfFile(slug + ".mdx");
-
+  const source = getSourceOfFile(slug);
+  debugger
   const { code, frontmatter } = await bundleMDX(source, {
-    cwd: POSTS_PATH,
+    cwd: POSTS_PATH + '/' + slug,
     esbuildOptions: (options) => {
       options.platform = 'node'
       return options

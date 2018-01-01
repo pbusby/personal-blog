@@ -5,8 +5,8 @@ import { getAllPosts, getSinglePost } from "../../utils/mdx";
 const Post = ({ code, frontmatter }) => {
   const Component = React.useMemo(() => getMDXComponent(code), [code]);
   return (
-    <div className="wrapper">
-      <h1>{frontmatter.title}</h1>
+    <div className="container mx-auto max-w-screen-md px-10">
+      <h1 className="post-title">{frontmatter.title}</h1>
       <Component />
     </div>
   );
