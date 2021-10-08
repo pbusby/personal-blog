@@ -1,0 +1,17 @@
+.light-mode {
+  width: 200px;
+  height: 200px;
+  background: white;
+  color: black;
+  border: 1px solid black;
+  h1 {
+    padding-top: 20px;
+  }
+}
+
+.dark-mode {
+  width: 200px;
+  height: 200px;
+  background: black;
+  color: white;
+}
