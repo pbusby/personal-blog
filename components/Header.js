@@ -2,20 +2,32 @@ import styled from 'styled-components'
 import Link from 'next/link'
 
 const Wrapper = styled.div`
-  background-color: blue;
+
   h2 {
     padding: 10px 30px;
-    color: white;
+    letter-spacing: 2px;
+    color: black;
   }
 `
 
 export default function Header() {
   return (
     <Wrapper>
-      <header>
-        <Link href='/'>
-          <h2>Pauls Blog</h2>
-        </Link>
+      <header class="">
+        <div class="mx-auto flex justify-around max-w-md">
+          <Link href='/'>
+            <h2>HOME</h2>
+          </Link>
+          <Link href='/'>
+            <h2>ABOUT</h2>
+          </Link>
+          <Link href='/'>
+            <h2>CONTACT</h2>
+          </Link>
+          <Link href='/'>
+            <h2>CODE</h2>
+          </Link>
+        </div>
       </header>
     </Wrapper>
   )

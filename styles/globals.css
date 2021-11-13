@@ -1,3 +1,9 @@
+/* https://tailwindcss.com/docs/guides/nextjs */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* https://fonts.google.com/specimen/Oswald#standard-styles */
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@300&family=Oswald&display=swap');
 html,
 body {
   padding: 0;
@@ -8,7 +14,42 @@ body {
 
 h1,h2,h3,h4,h5,h6 {
   margin: 0;
+  font-family: 'Oswald', sans-serif;
 }
+
+p {
+  font-family: 'Inconsolata', monospace;
+  padding-bottom: 15px;
+}
+
+.post-card-description {
+  min-height: 90px;
+  font-family: 'Inconsolata', monospace;
+  padding-bottom: 15px;
+}
+
+.post-title {
+  font-size: 32px;
+}
+
+/**
+ * Blockquotes
+ */
+ blockquote {
+  color: gray;
+  border-left: 4px solid gray;
+  padding-left: 20px;
+  /* @include relative-font-size(1.125); */
+  font-size: 14px;
+  letter-spacing: -1px;
+  font-style: italic;
+
+  > :last-child {
+    margin-bottom: 0;
+  }
+}
+
+ol, ul {}
 
 a {
   color: inherit;
@@ -18,3 +59,4 @@ a {
 * {
   box-sizing: border-box;
 }
+
