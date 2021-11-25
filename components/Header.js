@@ -6,15 +6,14 @@ const Wrapper = styled.div`
   h2 {
     padding: 10px 30px;
     letter-spacing: 2px;
-    color: black;
   }
 `
 
 export default function Header() {
   return (
     <Wrapper>
-      <header class="">
-        <div class="mx-auto flex justify-around max-w-md">
+      <header className="">
+        <div className="mx-auto flex justify-around max-w-md">
           <Link href='/'>
             <h2>HOME</h2>
           </Link>

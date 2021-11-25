@@ -37,7 +37,7 @@ export const getAllPosts = () => {
 
 export const getSinglePost = async (slug) => {
   const source = getSourceOfFile(slug);
-  debugger
+
   const { code, frontmatter } = await bundleMDX(source, {
     cwd: POSTS_PATH + '/' + slug,
     esbuildOptions: (options) => {
