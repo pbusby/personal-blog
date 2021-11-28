@@ -1,38 +1,42 @@
 import React, {useEffect, useState} from "react";
 import { getMDXComponent } from "mdx-bundler/client";
 import { getAllPosts, getSinglePost } from "../../utils/mdx";
+import Comments from "../../components/Comments.js"
 import styled from 'styled-components';
 
-const Comments = styled.div`
-  background: grey;
-  width: 100%;
-  height: 400px;
-  color: white;
+const ContentContainer = styled.div`
+  margin-bottom: 20px;
 `
 
 const Post = ({ code, frontmatter }) => {
 
 
-  const [comments, setComments] = useState([])
-  const Component = React.useMemo(() => getMDXComponent(code), [code]);
+  const [postComments, setPostComments] = useState([])
+  // const PostContent = React.useMemo(() => getMDXComponent(code), [code]);
+  const PostContent = getMDXComponent(code);
+
+
   useEffect(() => {
-    const fetchMock = async () => {
-      let result = await fetch('/api/comments')
-      result = await result.json()
+    const fetchComments = async () => {
+      const title = frontmatter.title
       debugger
-      setComments(result)
+      if (title) {
+        let result = await fetch(`/api/comments?postTitle=${title}`)
+        result = await result.json()
+        setPostComments(result)
+      }
     }
-    fetchMock();
-    console.log('this is comments', comments);
+    fetchComments();
+    // console.log('this is comments', comments);
   }, [])
   return (
-    <div className="container mx-auto max-w-screen-md px-10">
-      {JSON.stringify(comments)}
+    <div className="container mx-auto max-w-screen-md px-10 mb-8">
+      {/* {JSON.stringify(postComments)} */}
       <h1 className="post-title">{frontmatter.title}</h1>
-      <Component />
-      <Comments>{comments.map((comment) => (
-        <p>{comment.id} {comment.message}</p>
-      ))}</Comments>
+      <ContentContainer>
+        <PostContent />
+      </ContentContainer>
+      <Comments postComments={postComments} />
     </div>
   );
 };

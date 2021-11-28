@@ -10,14 +10,13 @@ const Wrapper = styled.div`
     padding-top: 20px;
   }
 `
-// const Text = styled.h1`
-// padding-top: 20px;
 
-// `
-const CompyRemix = (props) => (
-  <Wrapper>
-    <h1>Greetings {props.name}</h1>
-  </Wrapper>
-)
+const CompyRemix = (props) => {
+  return (
+    <Wrapper>
+      <h1>Greetings {props.name}</h1>
+    </Wrapper>
+  )
+  }
 
 export default CompyRemix;

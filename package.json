@@ -13,6 +13,7 @@
     "@prisma/client": "^3.5.0",
     "autoprefixer": "^10.3.7",
     "cloudinary-react": "^1.7.0",
+    "dayjs": "^1.10.7",
     "esbuild": "^0.13.3",
     "gray-matter": "^4.0.3",
     "mdx-bundler": "^6.0.1",

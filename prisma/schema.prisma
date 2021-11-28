@@ -2,6 +2,10 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 // PRISMA SETUP HEREEEE: https://vercel.com/guides/nextjs-prisma-postgres
 
+// useful commands:
+// yarn prisma db push
+// yarn prisma studio
+
 generator client {
   provider = "prisma-client-js"
 }
@@ -12,6 +16,9 @@ datasource db {
 }
 
 model Comment {
-  id        Int     @default(autoincrement()) @id
-  message     String
+  id         Int     @default(autoincrement()) @id
+  postTitle  String
+  authorName String
+  createdAt  DateTime @default(now())
+  message    String
 }
