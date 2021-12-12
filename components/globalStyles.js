@@ -5,4 +5,17 @@ export const GlobalStyles = createGlobalStyle`
     color: ${({ theme }) => theme.text};
     transition: all 0.50s linear;
   }
+  .bannerImage {
+    height: 500px;
+    z-index: 0;
+  }
+  .bannerText {
+    position: relative;
+    z-index: 1;
+  }
+  .bannerContainer {
+    position: relative;
+    height: 500px;
+    margin-bottom: 40px;
+  }
 `

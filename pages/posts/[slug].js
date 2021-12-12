@@ -3,23 +3,30 @@ import { getMDXComponent } from "mdx-bundler/client";
 import { getAllPosts, getSinglePost } from "../../utils/mdx";
 import Comments from "../../components/Comments.js"
 import styled from 'styled-components';
+import PostBanner from "../../components/PostBanner.js"
+import PostIntroSection from "../../components/PostIntroSection.js"
+import PostHeader from "../../components/PostHeader.js"
+import HamburgerHeader from "../../components/HamburgerHeader.js"
+import { useContext } from "react"
+import { ThemeContext } from "styled-components"
+import SvgArrowDownCircle from '../../public/images/arrow-down-circle'
 
 const ContentContainer = styled.div`
   margin-bottom: 20px;
 `
 
-const Post = ({ code, frontmatter }) => {
+const Post = ({ code, props, frontmatter }) => {
 
-
+  const themeContext = useContext(ThemeContext)
   const [postComments, setPostComments] = useState([])
   // const PostContent = React.useMemo(() => getMDXComponent(code), [code]);
+  // this provides better performance but is currently conflicting with useEffect and causing the following error:
+  // React has detected a change in the order of Hooks
   const PostContent = getMDXComponent(code);
-
 
   useEffect(() => {
     const fetchComments = async () => {
       const title = frontmatter.title
-      debugger
       if (title) {
         let result = await fetch(`/api/comments?postTitle=${title}`)
         result = await result.json()
@@ -30,14 +37,21 @@ const Post = ({ code, frontmatter }) => {
     // console.log('this is comments', comments);
   }, [])
   return (
-    <div className="container mx-auto max-w-screen-md px-10 mb-8">
-      {/* {JSON.stringify(postComments)} */}
-      <h1 className="post-title">{frontmatter.title}</h1>
-      <ContentContainer>
-        <PostContent />
-      </ContentContainer>
-      <Comments postComments={postComments} />
-    </div>
+    <>
+      <HamburgerHeader></HamburgerHeader>
+      <PostHeader frontmatter={frontmatter}></PostHeader>
+      <PostBanner bannerPath={frontmatter.bannerPath} />
+      <div className="container mx-auto max-w-screen-md px-10 mb-8">
+        {/* {JSON.stringify(postComments)} */}
+        {/* <PostIntroSection frontmatter={frontmatter} /> */}
+        <ContentContainer>
+          <PostContent />
+        </ContentContainer>
+        <span className="section-title">Comments</span>
+        <SvgArrowDownCircle theme={themeContext} className="inline ml-4 mb-2"></SvgArrowDownCircle>
+        <Comments postComments={postComments} />
+      </div>
+    </>
   );
 };
 
