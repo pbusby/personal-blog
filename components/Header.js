@@ -7,10 +7,15 @@ import ToggleThemeBtn from './ToggleThemeBtn.js'
 import { useUpdateMyTheme, MyThemeContext, MyThemeProvider } from '../context/global-data.js'
 import { ThemeContext } from 'styled-components'
 import { NextLink } from '../components/NextLink.js'
+import SvgHamburgerMenu from '../public/images/HamburgerMenu.js'
+import { useRouter } from 'next/router'
 
 
 
 const Wrapper = styled.div`
+  position: relative;
+  height: 80px;
+  width: 100%;
   display: flex;
   align-items: center;
   background: ${({ theme }) => theme.nav};
@@ -23,7 +28,7 @@ const Wrapper = styled.div`
 
 const LogoContainer = styled.div`
   display: flex;
-  margin-left: 50px;
+  margin-left: ${({ isMobile }) => isMobile ? '10px' : '50px'};
   align-items: center;
   span {
     margin-right: 10px;
@@ -31,36 +36,44 @@ const LogoContainer = styled.div`
 `
 
 const ThemeContainer = styled.div`
+  position: absolute;
+  right: 0px;
   margin-right: 20px;
 `
 
-export default function Header() {
+const Header = ({isMobile}) => {
 
   const [theme, toggleTheme, componentMounted] = useTheme();
   const themeMode = theme === 'light' ? lightTheme : darkTheme
 
+  const router = useRouter()
+  const postPath = router.pathname.includes('/posts')
+  const showNavLinks = !postPath && !isMobile
+
   return (
-
-
-
       <header className="">
       <Wrapper>
-        <LogoContainer>
-        <Arrivals className="logo-badge" theme={themeMode}></Arrivals>
-        <span className="logo-text">Arrivals</span>
+        <LogoContainer isMobile={isMobile} >
+          {postPath && <SvgHamburgerMenu></SvgHamburgerMenu> }
+          <Link href="/">
+            <Arrivals className={postPath ? "logo-badge-rotated" : "logo-badge"} theme={themeMode}></Arrivals>
+          </Link>
+          {!postPath &&  <span className="logo-text">Arrivals</span>}
 
         </LogoContainer>
-        <div className="mx-auto flex justify-around max-w-md">
-          <Link href='/'>
-            <h2 className="next-link">About</h2>
-          </Link>
-          <Link href='/'>
-            <h2 className="next-link">Contact</h2>
-          </Link>
-          <Link href='/'>
-            <h2 className="next-link">Code</h2>
-          </Link>
-        </div>
+        {showNavLinks &&
+          <div className="mx-auto flex justify-around max-w-md">
+            <Link href='/'>
+              <h2 className="next-link">About</h2>
+            </Link>
+            <Link href='/'>
+              <h2 className="next-link">Contact</h2>
+            </Link>
+            <Link href='/'>
+              <h2 className="next-link">Code</h2>
+            </Link>
+          </div>
+        }
         <ThemeContainer>
           <MyThemeContext.Consumer>
             {(state) =>
@@ -75,3 +88,5 @@ export default function Header() {
 
   )
 }
+
+export default Header;

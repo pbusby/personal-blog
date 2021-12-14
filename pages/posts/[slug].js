@@ -24,6 +24,11 @@ const Post = ({ code, props, frontmatter }) => {
   // React has detected a change in the order of Hooks
   const PostContent = getMDXComponent(code);
 
+  let isMobile
+  if (typeof window !== "undefined") {
+    isMobile = window.matchMedia('(max-width: 992px)').matches
+  }
+
   useEffect(() => {
     const fetchComments = async () => {
       const title = frontmatter.title
@@ -38,8 +43,8 @@ const Post = ({ code, props, frontmatter }) => {
   }, [])
   return (
     <>
-      <HamburgerHeader></HamburgerHeader>
-      <PostHeader frontmatter={frontmatter}></PostHeader>
+      {/* <HamburgerHeader></HamburgerHeader> */}
+      <PostHeader frontmatter={frontmatter} isMobile={isMobile}></PostHeader>
       <PostBanner bannerPath={frontmatter.bannerPath} />
       <div className="container mx-auto max-w-screen-md px-10 mb-8">
         {/* {JSON.stringify(postComments)} */}

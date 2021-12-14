@@ -52,8 +52,6 @@ export default function BlogList({ featuredPosts, remainingPosts }) {
 
   return (
     <>
-
-    <Header></Header>
     <div className="mx-auto p-12">
       <span className="section-title">Recent</span>
       <SvgArrowDownCircle theme={themeContext} className="inline ml-4 mb-2"></SvgArrowDownCircle>

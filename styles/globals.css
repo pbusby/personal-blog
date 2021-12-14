@@ -67,12 +67,15 @@ body {
 
 .logo-badge {
   transform: rotate(90deg);
-  z-index: 999;
+  margin-left: 5px;
   margin-right: 5px;
+  transition: transform 0.35s linear;
 }
 
-.logo-badge-back {
+.logo-badge-rotated {
   transform: rotate(270deg);
+  margin-left: 5px;
+  transition: transform 0.35s linear;
 }
 
 h1 {
