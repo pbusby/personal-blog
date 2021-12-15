@@ -112,7 +112,7 @@ const PostHeader = (props) => {
                 <Tag theme={themeContext} text={tag}></Tag>
               ))}
             </div>
-          <SvgArrowDownCircle onClick={props.scrollCallback} theme={themeContext} className="inline ml-4 mb-2"></SvgArrowDownCircle>
+            <SvgArrowDownCircle onClick={props.scrollCallback} theme={themeContext} className="inline ml-4 mb-2"></SvgArrowDownCircle>
           </div>
           <div className="flex">
             {/* <h6 onClick={props.scrollCallback}>Read on</h6> */}
@@ -131,10 +131,13 @@ const PostHeader = (props) => {
         <Date>{props.frontmatter.date}</Date>
 
         <p>{props.frontmatter.teaser}</p>
-        <div>
-        {tags?.map((tag) => (
-          <Tag theme={themeContext} text={tag}></Tag>
-        ))}
+        <div className="flex items-center">
+          <div>
+            {tags?.map((tag) => (
+              <Tag theme={themeContext} text={tag}></Tag>
+            ))}
+            <SvgArrowDownCircle onClick={props.scrollCallback} theme={themeContext} className="inline ml-4 mb-2"></SvgArrowDownCircle>
+          </div>
         </div>
       </Teaser>
     </HeaderContainer>
