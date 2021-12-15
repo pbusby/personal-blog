@@ -9,6 +9,7 @@ const Card = styled.div`
 	height: 450px;
 	position: relative;
 	margin-bottom: 20px;
+	box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
 	h4 {
 		// color: #999999;
 	}
@@ -28,6 +29,8 @@ const PostCardTile = React.forwardRef(({ onClick, href, post }, ref) => {
         layout='fill'
 				objectFit='cover'
         objectPosition='center'
+				placeholder='blur'
+				blurDataURL={`https://res.cloudinary.com/dtb2b6cpx/image/upload/${post.frontmatter.bannerPath}`}
       	/>
 			</Card>
 			<div>

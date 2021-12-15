@@ -6,6 +6,8 @@ const SvgCrescentMoonCopy = (props) => (
     viewBox="0 0 47.539 47.539"
     width={20}
     height={20}
+    stroke={props.fill}
+    strokeWidth={1}
     style={{
       enableBackground: "new 0 0 47.539 47.539"
     }}
@@ -13,6 +15,7 @@ const SvgCrescentMoonCopy = (props) => (
     {...props}
   >
     <path
+      strokeWidth={1}
       style={{
         fill: props.fill,
         transition: "all 0.50s linear"

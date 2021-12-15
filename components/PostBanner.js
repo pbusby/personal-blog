@@ -19,6 +19,8 @@ const PostBanner = (props) => {
         layout='fill'
         objectFit='cover'
         objectPosition='center'
+        placeholder='blur'
+        blurDataURL={`https://res.cloudinary.com/dtb2b6cpx/image/upload/${props.bannerPath}`}
       />
     </BannerContainer>
   )

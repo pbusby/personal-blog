@@ -54,7 +54,7 @@ const Header = ({isMobile}) => {
       <header className="">
       <Wrapper>
         <LogoContainer isMobile={isMobile} >
-          {postPath && <SvgHamburgerMenu></SvgHamburgerMenu> }
+          {postPath && <SvgHamburgerMenu fill={themeMode.text}></SvgHamburgerMenu> }
           <Link href="/">
             <Arrivals className={postPath ? "logo-badge-rotated" : "logo-badge"} theme={themeMode}></Arrivals>
           </Link>

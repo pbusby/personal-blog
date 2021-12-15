@@ -53,9 +53,9 @@ const Teaser = styled.p`
 // https://mapchart.net/portugal.html
 const Map = styled.div`
   height: 250px;
-  max-width: 250px;
+  max-width: 330px;
   text-align: center;
-  padding: 20px;
+  // padding: 20px;
   // border: 3px solid gray;
   img {
     object-fit: contain;
