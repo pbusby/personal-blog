@@ -2,6 +2,8 @@ import styled from 'styled-components'
 import { useContext, useEffect } from 'react'
 import { ThemeContext } from 'styled-components'
 import Tag from './Tag.js'
+import SvgArrowDownCircle from '../public/images/arrow-down-circle'
+
 
 const HeaderContainer = styled.div`
   background: ${({ theme }) => theme.nav};
@@ -39,13 +41,29 @@ const Title = styled.h1`
   }
 `
 
-const Teaser = styled.p`
+const Teaser = styled.div`
   border-left: ${({ bottom }) => bottom ? '3px solid gray' : ''};
   padding-left: 10px;
-  font-style: italic;
+
+  p {
+    font-style: italic;
+  }
+  h6 {
+    font-family: 'Sarabun';
+    font-weight: 700;
+    font-size: 16px;
+    margin-left: 20px;
+  }
+  tags {
+    margin
+  }
+  svg {
+    margin: 0;
+    cursor: pointer;
+  }
   max-width: 85%;
   div {
-    margin-top: 20px;
+    // margin-top: 20px;
     display: flex;
   }
 `
@@ -87,11 +105,17 @@ const PostHeader = (props) => {
         <Teaser bottom={true} className="hidden lg:block">
           <Date>{props.frontmatter.date}</Date>
 
-          {props.frontmatter.teaser}
-          <div>
-          {tags?.map((tag) => (
-            <Tag theme={themeContext} text={tag}></Tag>
-          ))}
+          <p>{props.frontmatter.teaser}</p>
+          <div className="flex items-center">
+            <div>
+              {tags?.map((tag) => (
+                <Tag theme={themeContext} text={tag}></Tag>
+              ))}
+            </div>
+          <SvgArrowDownCircle onClick={props.scrollCallback} theme={themeContext} className="inline ml-4 mb-2"></SvgArrowDownCircle>
+          </div>
+          <div className="flex">
+            {/* <h6 onClick={props.scrollCallback}>Read on</h6> */}
           </div>
         </Teaser>
         <a href="https://mapchart.net/portugal.html">
@@ -106,7 +130,7 @@ const PostHeader = (props) => {
       <Teaser bottom={false} className="block lg:hidden col-span-2 p-5">
         <Date>{props.frontmatter.date}</Date>
 
-        {props.frontmatter.teaser}
+        <p>{props.frontmatter.teaser}</p>
         <div>
         {tags?.map((tag) => (
           <Tag theme={themeContext} text={tag}></Tag>

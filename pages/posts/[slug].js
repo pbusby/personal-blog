@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, useRef} from "react";
 import { getMDXComponent } from "mdx-bundler/client";
 import { getAllPosts, getSinglePost } from "../../utils/mdx";
 import Comments from "../../components/Comments.js"
@@ -28,6 +28,11 @@ const Post = ({ code, props, frontmatter }) => {
   if (typeof window !== "undefined") {
     isMobile = window.matchMedia('(max-width: 992px)').matches
   }
+  const scrollToTargetAdjusted = () => {
+    const element = document.getElementById('postBody');
+    const elementPosition = element.getBoundingClientRect().top - 100
+    window.scrollTo( {top: elementPosition, behavior: 'smooth' } )
+  }
 
   useEffect(() => {
     const fetchComments = async () => {
@@ -44,9 +49,9 @@ const Post = ({ code, props, frontmatter }) => {
   return (
     <>
       {/* <HamburgerHeader></HamburgerHeader> */}
-      <PostHeader frontmatter={frontmatter} isMobile={isMobile}></PostHeader>
+      <PostHeader frontmatter={frontmatter} isMobile={isMobile} scrollCallback={scrollToTargetAdjusted}></PostHeader>
       <PostBanner bannerPath={frontmatter.bannerPath} />
-      <div className="container mx-auto max-w-screen-md px-10 mb-8">
+      <div id="postBody" className="container mx-auto max-w-screen-md px-10 mb-8">
         {/* {JSON.stringify(postComments)} */}
         {/* <PostIntroSection frontmatter={frontmatter} /> */}
         <ContentContainer>
