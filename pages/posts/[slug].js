@@ -10,6 +10,7 @@ import HamburgerHeader from "../../components/HamburgerHeader.js"
 import { useContext } from "react"
 import { ThemeContext } from "styled-components"
 import SvgArrowDownCircle from '../../public/images/arrow-down-circle'
+import { Element, scroller } from 'react-scroll'
 
 const ContentContainer = styled.div`
   margin-bottom: 20px;
@@ -28,10 +29,16 @@ const Post = ({ code, props, frontmatter }) => {
   if (typeof window !== "undefined") {
     isMobile = window.matchMedia('(max-width: 992px)').matches
   }
-  const scrollToTargetAdjusted = () => {
-    const element = document.getElementById('postBody');
-    const elementPosition = element.getBoundingClientRect().top - 100
-    window.scrollTo( {top: elementPosition, behavior: 'smooth' } )
+  const scrollToTarget = () => {
+    // const element = document.getElementById('postBody');
+    // const elementPosition = element.getBoundingClientRect().top - 100
+    // window.scrollTo( {top: elementPosition, behavior: 'smooth' } )
+    scroller.scrollTo('post-body', {
+      duration: 800,
+      delay: 0,
+      offset: -75,
+      smooth: 'easeInOutQuart'
+    })
   }
 
   useEffect(() => {
@@ -49,9 +56,10 @@ const Post = ({ code, props, frontmatter }) => {
   return (
     <>
       {/* <HamburgerHeader></HamburgerHeader> */}
-      <PostHeader frontmatter={frontmatter} isMobile={isMobile} scrollCallback={scrollToTargetAdjusted}></PostHeader>
+      <PostHeader frontmatter={frontmatter} isMobile={isMobile} scrollCallback={scrollToTarget}></PostHeader>
       <PostBanner bannerPath={frontmatter.bannerPath} />
-      <div id="postBody" className="container mx-auto max-w-screen-md px-10 mb-8">
+      <Element name="post-body">
+      <div className="container mx-auto max-w-screen-md px-10 mb-8">
         {/* {JSON.stringify(postComments)} */}
         {/* <PostIntroSection frontmatter={frontmatter} /> */}
         <ContentContainer>
@@ -61,6 +69,7 @@ const Post = ({ code, props, frontmatter }) => {
         <SvgArrowDownCircle theme={themeContext} className="inline ml-4 mb-2"></SvgArrowDownCircle>
         <Comments postComments={postComments} />
       </div>
+      </Element>
     </>
   );
 };

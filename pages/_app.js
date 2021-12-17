@@ -18,7 +18,6 @@ function MyApp({ Component, pageProps }) {
   return (
   <MyThemeProvider>
       <>
-        <script defer src="https://unpkg.com/smoothscroll-polyfill@0.4.4/dist/smoothscroll.min.js"></script>
         <GlobalStyles/>
         <Header isMobile={isMobile}></Header>
         <Component {...pageProps} />
