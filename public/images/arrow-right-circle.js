@@ -1,7 +1,7 @@
 import * as React from "react";
 
 const SvgArrowCircleRight = (props) => (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width={30} height={30} {...props}>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width={22} height={22} {...props}>
     <path
     style={{
       fill: props.theme.text,

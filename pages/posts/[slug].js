@@ -67,7 +67,7 @@ const Post = ({ code, props, frontmatter }) => {
         </ContentContainer>
         <span className="section-title">Comments</span>
         <SvgArrowDownCircle theme={themeContext} className="inline ml-4 mb-2"></SvgArrowDownCircle>
-        <Comments postComments={postComments} />
+        <Comments postComments={postComments} postMeta={frontmatter} />
       </div>
       </Element>
     </>

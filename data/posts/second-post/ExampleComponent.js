@@ -11,7 +11,7 @@ const Wrapper = styled.div`
   }
 `
 
-const CompyRemix = (props) => {
+const ExampleComponent = (props) => {
   return (
     <Wrapper>
       <h1>Greetings {props.name}</h1>
@@ -19,4 +19,4 @@ const CompyRemix = (props) => {
   )
   }
 
-export default CompyRemix;
+export default ExampleComponent;

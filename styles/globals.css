@@ -5,9 +5,9 @@
 /* https://fonts.google.com/specimen/Oswald#standard-styles */
 @import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans:ital,wght@0,300;0,400;1,300&family=Merriweather:ital,wght@0,300;0,400;1,300&family=Sarabun:wght@600;700;800&display=swap');
 @font-face {
-  font-family: 'Solari';
-  src: url('../public/images/Solari.woff2') format('woff2'),
-      url('../public/images/Solari.woff') format('woff');
+  font-family: 'BebasNeue-Regular';
+  src: url('../public/images/BebasNeue-Regular.woff2') format('woff2'),
+      url('../public/images/BebasNeue-Regular.woff') format('woff');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -33,10 +33,10 @@ body {
 }
 
 .section-title {
-  font-family: 'Solari';
+  font-family: 'BebasNeue-Regular';
+  letter-spacing: 2px;
   /* font-family: 'Sarabun'; */
-  color: black !important;
-  background-color: white;
+  /* color: black !important; */
   font-size: 25px;
   margin-bottom: 10px;
   display: inline !important;
@@ -87,7 +87,7 @@ h1 {
 h2,h3,h4,h5,h6 {
   margin: 0;
   font-size: 12px;
-  font-family: 'Merriweather Sans', sans-serif;
+  font-family: 'Sarabun', sans-serif;
   font-weight: 400;
 }
 

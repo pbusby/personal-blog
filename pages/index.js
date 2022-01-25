@@ -47,6 +47,14 @@ const DownArrow = styled.span`
   transition: all 0.50s linear;
 `
 
+const LettersContainer = styled.div`
+  img {
+    // margin-left: 2px;
+    display: inline-block;
+    width: 20px;
+  }
+`
+
 export default function BlogList({ featuredPosts, remainingPosts }) {
   const themeContext = useContext(ThemeContext)
 
@@ -54,7 +62,7 @@ export default function BlogList({ featuredPosts, remainingPosts }) {
     <>
     <div className="mx-auto p-12">
       <span className="section-title">Recent</span>
-      <SvgArrowDownCircle theme={themeContext} className="inline ml-4 mb-2"></SvgArrowDownCircle>
+      <SvgArrowDownCircle theme={themeContext} className="inline ml-2 mb-2"></SvgArrowDownCircle>
       <FeaturedPostsRow>
         {featuredPosts.map((post, index) => (
           <FeaturedPostWrapper key={index} className='col-span-1'>
@@ -66,7 +74,7 @@ export default function BlogList({ featuredPosts, remainingPosts }) {
       </FeaturedPostsRow>
 
       <span className="section-title">Departed</span>
-      <SvgArrowCircleRight theme={themeContext} className="inline ml-4 mb-2"></SvgArrowCircleRight>
+      <SvgArrowCircleRight theme={themeContext} className="inline ml-2 mb-2"></SvgArrowCircleRight>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {remainingPosts.map((post, index) => (
           <Link key={index} href={`posts/${post.slug}`}>
