@@ -32,6 +32,10 @@
     "react-scroll": "^1.8.4",
     "tailwindcss": "^2.2.16"
   },
+  "engines": {
+    "node": "^15.13.0",
+    "yarn": "1.x"
+  },
   "devDependencies": {
     "@babel/core": "^7.16.0",
     "@types/react": "^17.0.38",
