@@ -7,6 +7,7 @@ import PostBanner from "../../components/PostBanner.js"
 import PostIntroSection from "../../components/PostIntroSection.js"
 import PostHeader from "../../components/PostHeader.js"
 import HamburgerHeader from "../../components/HamburgerHeader.js"
+import SimpleModal from "../../components/SimpleModal.js"
 import { useContext } from "react"
 import { ThemeContext } from "styled-components"
 import SvgArrowDownCircle from '../../public/images/arrow-down-circle'
@@ -14,6 +15,13 @@ import { Element, scroller } from 'react-scroll'
 
 const ContentContainer = styled.div`
   margin-bottom: 20px;
+  p:first-of-type:first-letter {
+    float: left;
+    line-height: 1;
+    margin-right: 5px;
+    font-size: 45px;
+    font-weight: bold;
+  }
 `
 
 const Post = ({ code, props, frontmatter }) => {
@@ -56,20 +64,22 @@ const Post = ({ code, props, frontmatter }) => {
   return (
     <>
       {/* <HamburgerHeader></HamburgerHeader> */}
-      <PostHeader frontmatter={frontmatter} isMobile={isMobile} scrollCallback={scrollToTarget}></PostHeader>
-      <PostBanner bannerPath={frontmatter.bannerPath} />
-      <Element name="post-body">
-      <div className="container mx-auto max-w-screen-md px-10 mb-8">
-        {/* {JSON.stringify(postComments)} */}
-        {/* <PostIntroSection frontmatter={frontmatter} /> */}
-        <ContentContainer>
-          <PostContent />
-        </ContentContainer>
-        <span className="section-title">Comments</span>
-        <SvgArrowDownCircle theme={themeContext} className="inline ml-4 mb-2"></SvgArrowDownCircle>
-        <Comments postComments={postComments} postMeta={frontmatter} />
-      </div>
-      </Element>
+        <article>
+        <PostHeader frontmatter={frontmatter} isMobile={isMobile} scrollCallback={scrollToTarget}></PostHeader>
+        <PostBanner bannerPath={frontmatter.bannerPath} />
+        <Element name="post-body">
+        <div className="container mx-auto max-w-screen-md px-10 mb-8">
+          {/* {JSON.stringify(postComments)} */}
+          {/* <PostIntroSection frontmatter={frontmatter} /> */}
+          <ContentContainer>
+            <PostContent id="PostContent" />
+          </ContentContainer>
+          <span className="section-title">Comments</span>
+          <SvgArrowDownCircle theme={themeContext} className="inline ml-4 mb-2"></SvgArrowDownCircle>
+          <Comments postComments={postComments} postMeta={frontmatter} />
+        </div>
+        </Element>
+      </article>
     </>
   );
 };

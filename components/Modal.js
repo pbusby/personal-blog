@@ -4,7 +4,6 @@ import ReactDOM from 'react-dom'
 
 const StyledModalBody = styled.div`
   padding-top: 10px;
-  background-color: blue;
 `;
 
 const StyledModalHeader = styled.div`
@@ -15,13 +14,19 @@ const StyledModalHeader = styled.div`
 
 const StyledModal = styled.div`
   background: white;
-  width: 500px;
-  height: 600px;
+  width: 100%;
+  height: 100%;
   border-radius: 15px;
   padding: 15px;
 `;
+
+const StyledModalWrapper = styled.div`
+  width: 500px;
+  height: 600px;
+`;
+
 const StyledModalOverlay = styled.div`
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -36,11 +41,16 @@ const StyledModalTitle = styled.h3`
   text-transform: uppercase;
 `
 
-const Modal = ({ show, onClose, children, title }) => {
+const Modal = ({ onClose, children, title, description, actions }) => {
   const [isBrowser, setIsBrowser] = useState(false)
+  const modalWrapperRef = useRef();
+
 
   useEffect(() => {
     setIsBrowser(true);
+    window.addEventListener('click', backDropHandler);
+    // remove event listener when modal is closed using a useEffect cleanup function
+    return () => window.removeEventListener('click', backDropHandler);
   }, []);
 
   const handleClose = (e) => {
@@ -48,18 +58,29 @@ const Modal = ({ show, onClose, children, title }) => {
     onClose();
   };
 
-  const modalContent = show ? (
-    <StyledModalOverlay>
-      <StyledModal>
-        <StyledModalHeader>
-          <a href="#" onClick={handleClose}>X</a>
-        </StyledModalHeader>
-        {title && <StyledModalTitle>{title}</StyledModalTitle>}
-        <StyledModalBody>{children}</StyledModalBody>
-      </StyledModal>
-    </StyledModalOverlay>
+  const backDropHandler = (e) => {
+    if (!modalWrapperRef?.current?.contains(e.target)) {
+      onClose();
+    }
+  }
 
-  ) : null;
+  const modalContent = (
+    <StyledModalOverlay>
+      <StyledModalWrapper ref={modalWrapperRef}>
+        <StyledModal>
+          <StyledModalHeader>
+            <a href="#" onClick={handleClose}>X</a>
+          </StyledModalHeader>
+          {title && <StyledModalTitle>{title}</StyledModalTitle>}
+          <StyledModalBody>
+            {children}
+            <p>{description}</p>
+            <div>{actions}</div>
+          </StyledModalBody>
+        </StyledModal>
+      </StyledModalWrapper>
+    </StyledModalOverlay>
+  )
 
   if (isBrowser) {
     return ReactDOM.createPortal(

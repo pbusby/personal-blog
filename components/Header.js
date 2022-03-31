@@ -1,14 +1,16 @@
-import styled from 'styled-components'
-import Link from 'next/link'
-import Arrivals from '../public/images/Arrivals.js'
-import { useTheme } from '../components/useTheme.js'
-import { darkTheme, lightTheme } from '../components/Themes.js'
-import ToggleThemeBtn from './ToggleThemeBtn.js'
-import { useUpdateMyTheme, MyThemeContext, MyThemeProvider } from '../context/global-data.js'
-import { ThemeContext } from 'styled-components'
-import { NextLink } from '../components/NextLink.js'
-import SvgHamburgerMenu from '../public/images/HamburgerMenu.js'
-import { useRouter } from 'next/router'
+import styled from 'styled-components';
+import Link from 'next/link';
+import Arrivals from '../public/images/Arrivals.js';
+import { useTheme } from '../components/useTheme.js';
+import { darkTheme, lightTheme } from '../components/Themes.js';
+import ToggleThemeBtn from './ToggleThemeBtn.js';
+import { useUpdateMyTheme, MyThemeContext, MyThemeProvider } from '../context/global-data.js';
+import { ThemeContext } from 'styled-components';
+import { NextLink } from '../components/NextLink.js';
+import { useState } from 'react';
+import SvgHamburgerMenu from '../public/images/HamburgerMenu.js';
+import { useRouter } from 'next/router';
+import HamburgerMenu from '../components/HamburgerMenu.js';
 
 
 
@@ -33,6 +35,9 @@ const LogoContainer = styled.div`
   span {
     margin-right: 10px;
   }
+  svg {
+    cursor: pointer;
+  }
 `
 
 const ThemeContainer = styled.div`
@@ -44,17 +49,31 @@ const ThemeContainer = styled.div`
 const Header = ({isMobile}) => {
 
   const [theme, toggleTheme, componentMounted] = useTheme();
+  const [showMenu, setShowMenu] = useState(false);
   const themeMode = theme === 'light' ? lightTheme : darkTheme
-
   const router = useRouter()
   const postPath = router.pathname.includes('/posts')
   const showNavLinks = !postPath && !isMobile
+
+  const toggleShowMenu = () => {
+    setShowMenu(!showMenu);
+  }
 
   return (
       <header className="">
       <Wrapper>
         <LogoContainer isMobile={isMobile} >
-          {postPath && <SvgHamburgerMenu fill={themeMode.text}></SvgHamburgerMenu> }
+          {postPath && (
+            <SvgHamburgerMenu
+              fill={themeMode.text}
+              onClick={() => toggleShowMenu()}
+            />
+          )
+          }
+          {showMenu && (
+            <HamburgerMenu></HamburgerMenu>
+          )
+          }
           <Link href="/">
             <Arrivals className={postPath ? "logo-badge-rotated" : "logo-badge"} theme={themeMode}></Arrivals>
           </Link>

@@ -3,12 +3,13 @@ import Link from 'next/link'
 import ToggleThemeBtn from './ToggleThemeBtn.js'
 import { useTheme } from '../components/useTheme.js'
 import { darkTheme, lightTheme } from '../components/Themes.js'
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { useUpdateMyTheme, MyThemeContext, MyThemeProvider } from '../context/global-data.js'
 import { ThemeContext } from 'styled-components'
 import SvgHamburgerMenu from '../public/images/HamburgerMenu.js'
 import SvgAirplaneLogo from '../public/images/AirplaneLogo.js'
 import SvgArrivals from '../public/images/Arrivals.js'
+import HamburgerMenu from '../components/HamburgerMenu.js'
 
 
 const Wrapper = styled.div`
@@ -52,11 +53,20 @@ const Header = (props) => {
   const themeMode = theme === 'light' ? lightTheme : darkTheme
   const state = useContext(MyThemeContext)
   const currentTheme = useContext(ThemeContext)
+  [showMenu, setShowMenu] = useState(false);
 
   return (
     <Wrapper>
       <div>
-      <SvgHamburgerMenu fill={themeMode.text}/>
+      <SvgHamburgerMenu
+        fill={themeMode.text}
+        onClick={()=> setShowModal(true) }
+      />
+      {showMenu && (
+        <HamburgerMenu></HamburgerMenu>
+      )
+      }
+
       <Link href="/">
         {/* <SvgAirplaneLogo fill={themeMode.text}/> */}
         <SvgArrivals theme={themeMode} className='logo-badge-back next-link' />

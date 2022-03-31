@@ -104,6 +104,14 @@ const Comment = styled.div`
 border-bottom: 1px solid #8FA6B2;
 `
 
+const Button = styled.button`
+  margin-right: 5px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  background: black;
+  color: white;
+`
+
 const Comments = (props) => {
   const themeContext = useContext(ThemeContext)
   const [showModal, setShowModal] = useState(false);
@@ -129,6 +137,13 @@ const Comments = (props) => {
   });
   console.log('this is data', data)
   console.log('this is props', props)
+
+  const actions = (
+    <>
+      <Button>Save Comment</Button>
+      <Button>Discard Comment</Button>
+    </>
+  )
   useEffect(() => {
     console.log('Comments log', props.postComments)
   })
@@ -141,11 +156,20 @@ const Comments = (props) => {
   // https://www.apollographql.com/docs/react/data/mutations/#refetching-queries
   return (
     <CommentsContainer>
-      {/* <h1>showModal value: {JSON.stringify(showModal)}</h1> */}
-      {/* <p onClick={() => setShowModal(true)}>Modal Open</p> */}
-      {/* <Modal onClose={() => setShowModal(false)} show={showModal}>
-        Hello from the modal!
-      </Modal> */}
+      <h1>showModal value: {JSON.stringify(showModal)}</h1>
+      <p onClick={() => setShowModal(true)}>Modal Open</p>
+      {showModal && (
+        <Modal
+          onClose={() => setShowModal(false)}
+          title={'Leave a comment'}
+          description={'Sign in and drop a line'}
+          actions={actions}
+        >
+          Hello from the modal!
+        </Modal>
+        )
+      }
+
       <CommentSubmissionForm>
       <form
         onSubmit={e => {
