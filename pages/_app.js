@@ -7,7 +7,7 @@ import { ApolloProvider } from '@apollo/client'
 import apolloClient from '../lib/apollo'
 import { MyThemeProvider } from '../context/global-data.js'
 import Header from '../components/Header'
-
+import { createContext } from 'react';
 
 function MyApp({ Component, pageProps }) {
   const [theme, toggleTheme, componentMounted] = useTheme();
@@ -25,7 +25,7 @@ function MyApp({ Component, pageProps }) {
             <GlobalStyles/>
             <Header isMobile={isMobile}></Header>
             <Component {...pageProps} />
-            {/* <Footer></Footer> */}
+            <Footer></Footer>
           </>
       </MyThemeProvider>
     </ApolloProvider>

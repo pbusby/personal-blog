@@ -4,8 +4,13 @@ module.exports = {
   theme: {
     extend: {},
   },
+  corePlugins: {
+    aspectRatio: false,
+  },
   variants: {
     extend: {},
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/aspect-ratio')
+  ],
 }

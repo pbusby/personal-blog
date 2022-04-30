@@ -1,12 +1,11 @@
 import React, {useEffect, useState, useRef} from "react";
 import { getMDXComponent } from "mdx-bundler/client";
 import { getAllPosts, getSinglePost } from "../../utils/mdx";
-import Comments from "../../components/Comments.js"
+// import Comments from "../../components/Comments.js"
 import styled from 'styled-components';
 import PostBanner from "../../components/PostBanner.js"
 import PostIntroSection from "../../components/PostIntroSection.js"
 import PostHeader from "../../components/PostHeader.js"
-import HamburgerHeader from "../../components/HamburgerHeader.js"
 import SimpleModal from "../../components/SimpleModal.js"
 import { useContext } from "react"
 import { ThemeContext } from "styled-components"
@@ -74,9 +73,9 @@ const Post = ({ code, props, frontmatter }) => {
           <ContentContainer>
             <PostContent id="PostContent" />
           </ContentContainer>
-          <span className="section-title">Comments</span>
-          <SvgArrowDownCircle theme={themeContext} className="inline ml-4 mb-2"></SvgArrowDownCircle>
-          <Comments postComments={postComments} postMeta={frontmatter} />
+          {/* <span className="section-title">Comments</span>
+          <SvgArrowDownCircle theme={themeContext} className="inline ml-4 mb-2"></SvgArrowDownCircle> */}
+          {/* <Comments postComments={postComments} postMeta={frontmatter} /> */}
         </div>
         </Element>
       </article>

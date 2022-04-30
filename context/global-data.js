@@ -31,7 +31,7 @@ export const MyThemeProvider = ({ children }) => {
   console.log('ThemeContext', ThemeContext)
 
   const updateMyTheme = (theme) => {
-    console.log(theme)
+    console.log('Updating theme from provider', theme)
     setMyTheme(theme)
   }
 

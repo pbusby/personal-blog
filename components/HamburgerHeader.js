@@ -1,3 +1,4 @@
+// DEPRECATEDDDDDD
 import styled from 'styled-components'
 import Link from 'next/link'
 import ToggleThemeBtn from './ToggleThemeBtn.js'
@@ -49,10 +50,10 @@ const HomeLogo = styled.span`
 `
 
 const Header = (props) => {
-  const [theme, toggleTheme, componentMounted] = useTheme();
+  const [theme, toggleTheme] = useTheme();
   const themeMode = theme === 'light' ? lightTheme : darkTheme
-  const state = useContext(MyThemeContext)
-  const currentTheme = useContext(ThemeContext)
+  // const state = useContext(MyThemeContext)
+  // const currentTheme = useContext(ThemeContext)
   [showMenu, setShowMenu] = useState(false);
 
   return (

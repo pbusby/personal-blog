@@ -89,7 +89,7 @@ const Header = ({isMobile}) => {
               <h2 className="next-link">Contact</h2>
             </Link>
             <Link href='/'>
-              <h2 className="next-link">Code</h2>
+              <h2 className="next-link">Photography</h2>
             </Link>
           </div>
         }

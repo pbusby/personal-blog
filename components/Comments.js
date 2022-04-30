@@ -7,7 +7,6 @@ import { useContext } from 'react'
 import { gql, useMutation, useQuery } from '@apollo/client'
 import Modal from './Modal.js'
 
-
 const CREATE_COMMENT = gql`
   mutation CreateComment($postTitle: String!, $authorName: String!, $message: String!) {
     createComment(postTitle: $postTitle, authorName: $authorName, message: $message) {

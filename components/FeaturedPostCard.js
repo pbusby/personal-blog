@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Image from 'next/image'
+import Imoge from './Imoge';
 import Tag from './Tag.js'
 
 
@@ -23,8 +24,8 @@ const FeaturedPostCard = React.forwardRef(({ onClick, href, post }, ref) => {
 
 	return (
 		<a href={href} onClick={onClick} ref={ref}>
-			<Card>
-				<Image
+			<Card className="aspect-w-16 aspect-h-9">
+				{/* <Image
         src={`https://res.cloudinary.com/dtb2b6cpx/image/upload/${post.frontmatter.bannerPath}`}
         alt="Picture of the author"
         layout='fill'
@@ -32,7 +33,8 @@ const FeaturedPostCard = React.forwardRef(({ onClick, href, post }, ref) => {
         objectPosition='center'
 				placeholder='blur'
 				blurDataURL={`https://res.cloudinary.com/dtb2b6cpx/image/upload/${post.frontmatter.bannerPath}`}
-      	/>
+      	/> */}
+				<Imoge originalFileName={post.frontmatter.bannerPath}></Imoge>
 			</Card>
 			<div>
 				<div className="flex justify-between items-start relative">

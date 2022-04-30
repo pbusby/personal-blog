@@ -1,19 +1,11 @@
 import Link from 'next/link'
 import styled from 'styled-components'
-import Header from '../components/Header.js'
 import PostCardTile from '../components/PostCardTile.js'
 import FeaturedPostCard from '../components/FeaturedPostCard.js'
 import { getAllPosts } from '../utils/mdx'
-import { useTheme } from '../components/useTheme.js'
-import { darkTheme, lightTheme } from '../components/Themes.js'
 import SvgArrowCircleRight from '../public/images/arrow-right-circle'
 import SvgArrowDownCircle from '../public/images/arrow-down-circle'
 import { useContext } from 'react'
-import {
-	useUpdateMyTheme,
-	MyThemeContext,
-	MyThemeProvider,
-} from '../context/global-data.js'
 import { ThemeContext } from 'styled-components'
 
 const Wrapper = styled.div`
