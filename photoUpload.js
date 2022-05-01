@@ -31,14 +31,14 @@ function processBatch(fileName) {
 async function resizeImage(s, fileName) {
   try {
     if (typeof(s) === 'number') {
-      await sharp(`${fileName}`)
+      await sharp(`./photoUploads/${fileName}`)
       .resize(s, undefined)
       .toFormat("jpeg", { mozjpeg: true })
       // .toFile(`${fileName}-${s}.jpeg`);
       .toFile(`./photoUploads/${fileName}-${s}.jpeg`);
 
     } else {
-      await sharp(`${fileName}`)
+      await sharp(`./photoUploads/${fileName}`)
       .toFormat("jpeg", { mozjpeg: true })
       .toFile(`./photoUploads/${fileName}-${s}.jpeg`);
     }
