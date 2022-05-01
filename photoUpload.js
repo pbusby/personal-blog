@@ -1,16 +1,5 @@
 console.log("I'm yo pusha man");
 const fs = require('fs')
-
-const dir = '/Users/paulbusby/code/personal-blog/photoUploads'
-const files = fs.readdirSync(dir)
-
-for (const file of files) {
-  if (file.includes('.jpg') || file.includes('.jpeg')) {
-    console.log(file)
-    processBatch(file);
-  }
-}
-
 const sharp = require("sharp");
 
 const sizesMap = [
@@ -24,6 +13,16 @@ const sizesMap = [
   2048,
   3840
 ]
+
+const dir = '/Users/paulbusby/code/personal-blog/photoUploads'
+const files = fs.readdirSync(dir)
+
+for (const file of files) {
+  if (file.includes('.jpg') || file.includes('.jpeg')) {
+    console.log(file)
+    processBatch(file);
+  }
+}
 
 function processBatch(fileName) {
   sizesMap.forEach(s => resizeImage(s, fileName));
