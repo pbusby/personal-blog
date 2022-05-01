@@ -5,9 +5,15 @@
   "scripts": {
     "dev": "next dev",
     "dev-server": "NODE_OPTIONS='--inspect' next dev",
-    "build": "node butts && next build",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "echo \"[Husky] pre-commit\"",
+      "pre-push": "echo \"I am running something before pushing\""
+    }
   },
   "dependencies": {
     "@apollo/client": "^3.5.7",
@@ -21,6 +27,7 @@
     "esbuild": "^0.13.3",
     "graphql": "^16.2.0",
     "gray-matter": "^4.0.3",
+    "husky": "^7.0.4",
     "mdx-bundler": "^6.0.1",
     "micro": "^9.3.4",
     "micro-cors": "^0.1.1",
