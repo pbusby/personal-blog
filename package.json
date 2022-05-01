@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "dev-server": "NODE_OPTIONS='--inspect' next dev",
-    "build": "next build",
+    "build": "node butts && next build",
     "start": "next start",
     "lint": "next lint"
   },
@@ -15,6 +15,7 @@
     "@tailwindcss/aspect-ratio": "^0.4.0",
     "apollo-server-micro": "^3.6.1",
     "autoprefixer": "^10.3.7",
+    "aws-sdk": "^2.1125.0",
     "axios": "^0.24.0",
     "dayjs": "^1.10.7",
     "esbuild": "^0.13.3",
