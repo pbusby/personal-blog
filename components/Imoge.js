@@ -9,7 +9,7 @@ import styled from 'styled-components';
 // TODO: decide if you want to put images in folders in the s3. Here is the original example:
 // `https://arrivals-travel.s3.eu-west-1.amazonaws.com/${cloudFolder}/${originalFileName}-1080.jpeg`
 
-const Imoge = ({cloudFolder, originalFileName}) => {
+const Imoge = ({_cloudFolder, originalFileName}) => {
   const defaultImageUrl = `https://arrivals-travel.s3.eu-west-1.amazonaws.com/${originalFileName}-1080.jpeg`
 
   const url640 = `https://arrivals-travel.s3.eu-west-1.amazonaws.com/${originalFileName}-640.jpeg`

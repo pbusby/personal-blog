@@ -1,6 +1,10 @@
-console.log("I'm yo pusha man");
+require('dotenv').config();
 const fs = require('fs')
 const sharp = require("sharp");
+const AWS = require('aws-sdk');
+const path = require("path");
+
+console.log("Photocopier at work...please hold");
 
 const sizesMap = [
   'original',
@@ -14,27 +18,37 @@ const sizesMap = [
   3840
 ]
 
-const dir = '/Users/paulbusby/code/personal-blog/photoUploads'
-const files = fs.readdirSync(dir)
+const dir = '/Users/paulbusby/code/personal-blog/photoUploads';
+const files = fs.readdirSync(dir);
 
-for (const file of files) {
-  if (file.includes('.jpg') || file.includes('.jpeg')) {
-    console.log(file)
-    processBatch(file);
-  }
+async function generatePhotoVariants (fileName) {
+  await Promise.all(sizesMap.map(s => resizeImage(s, fileName)));
+};
+
+async function processPhotosBatch () {
+  await Promise.all(files.map(async (file) => {
+    if (file.includes('.jpg') || file.includes('.jpeg')) {
+      console.log(file)
+      await generatePhotoVariants(file);
+    }
+  }));
+  const imageFileNames = fs
+    .readdirSync(PHOTOS_FOLDER_PATH)
+    .filter((file) => {
+      return fs.statSync(PHOTOS_FOLDER_PATH+'/'+file);
+    });
+
+  Promise.all(imageFileNames.map(f => readAndUploadFile(f)));
+  console.log("ImageFileNames after processing are:", imageFileNames)
 }
 
-function processBatch(fileName) {
-  sizesMap.forEach(s => resizeImage(s, fileName));
-}
 
-async function resizeImage(s, fileName) {
+async function resizeImage (s, fileName) {
   try {
     if (typeof(s) === 'number') {
       await sharp(`./photoUploads/${fileName}`)
       .resize(s, undefined)
       .toFormat("jpeg", { mozjpeg: true })
-      // .toFile(`${fileName}-${s}.jpeg`);
       .toFile(`./photoUploads/${fileName}-${s}.jpeg`);
 
     } else {
@@ -45,5 +59,40 @@ async function resizeImage(s, fileName) {
   } catch (error) {
     console.log(error);
   }
+};
+
+console.log("I'm yo pusha man");
+
+const s3 = new AWS.S3({
+  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
+});
+
+const PHOTOS_FOLDER_PATH = path.join(process.cwd(), "./photoUploads");
+console.log("posts path is:", PHOTOS_FOLDER_PATH);
+
+console.log(fs
+  .readdirSync(PHOTOS_FOLDER_PATH)
+  .filter((file) => {
+    return fs.statSync(PHOTOS_FOLDER_PATH+'/'+file);
+  }));
+
+function readAndUploadFile (fileName) {
+  const fileContent = fs.readFileSync(path.resolve(__dirname, `./photoUploads/${fileName}`));
+  const params = {
+    Bucket: process.env.AWS_BUCKET_NAME,
+    Key: fileName,
+    Body: fileContent
+  }
+  console.log(fileContent);
+  s3.upload(params, (err, data) => {
+    if (err) {
+      console.log(err)
+    } else {
+      console.log("Uploaded file:", fileName);
+    }
+  })
 }
+
+processPhotosBatch();
 

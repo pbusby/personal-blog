@@ -2175,10 +2175,10 @@ available-typed-arrays@^1.0.5:
   resolved "https://registry.npmjs.org/available-typed-arrays/-/available-typed-arrays-1.0.5.tgz"
   integrity sha512-DMD0KiN46eipeziST1LPP/STfDU0sufISXmjSgvVsoU2tqxctQeASejWcfNtxYKqETM1UxQ8sp2OrSBWpHY6sw==
 
-aws-sdk@^2.1125.0:
-  version "2.1125.0"
-  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.1125.0.tgz#2a73f5bf1e5e8f8dbc873ef87cfe14925721ba2e"
-  integrity sha512-2syNkKDqDcDmB/chc61a5xx+KYzaarLs1/KshE0b1Opp2oSq2FARyUBbk59HgwKaDUB61uPF33ZG9sHiIVx2hQ==
+aws-sdk@^2.1127.0:
+  version "2.1127.0"
+  resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.1127.0.tgz#c5dc814bb876ea896eddcbc7891ab6493f1a5153"
+  integrity sha512-jtP0CV89m2XNfgi1SnomrK798QqLmR+340w4KOMF0vBkY9kvGzPLV9GBNcg3JPj45tML1H4hSIonYkUUFSLkYw==
   dependencies:
     buffer "4.9.2"
     events "1.1.1"
@@ -3275,6 +3275,11 @@ domutils@^1.7.0:
   dependencies:
     dom-serializer "0"
     domelementtype "1"
+
+dotenv@^16.0.0:
+  version "16.0.0"
+  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-16.0.0.tgz#c619001253be89ebb638d027b609c75c26e47411"
+  integrity sha512-qD9WU0MPM4SWLPJy/r2Be+2WgQj8plChsyrCNQzW/0WjvcJQiKQJ9mH3ZgB3fxbUUxgc/11ZJ0Fi5KiimWGz2Q==
 
 ecc-jsbn@~0.1.1:
   version "0.1.2"
