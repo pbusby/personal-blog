@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Image from 'next/image'
-import Imoge from './Imoge';
+import ProgressiveImage from './ProgressiveImage';
 import Tag from './Tag.js'
 
 
@@ -34,7 +34,7 @@ const FeaturedPostCard = React.forwardRef(({ onClick, href, post }, ref) => {
 				placeholder='blur'
 				blurDataURL={`https://res.cloudinary.com/dtb2b6cpx/image/upload/${post.frontmatter.bannerPath}`}
       	/> */}
-				<Imoge originalFileName={post.frontmatter.bannerPath}></Imoge>
+				<ProgressiveImage originalFileName={post.frontmatter.bannerPath} blurDataUrl={post.frontmatter.imagePlaceholder}></ProgressiveImage>
 			</Card>
 			<div>
 				<div className="flex justify-between items-start relative">

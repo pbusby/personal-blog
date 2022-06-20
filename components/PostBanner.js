@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import Image from 'next/image';
-import Imoge from './Imoge';
+import ProgressiveImage from './ProgressiveImage';
+
+const iamastring = "hello"
 
 const BannerContainer = styled.div`
   position: relative;
@@ -35,9 +37,7 @@ const PostBanner = (props) => {
         objectFit='cover'
         objectPosition='center'
       /> */}
-      <Imoge originalFileName={props.bannerPath}>
-
-      </Imoge>
+      <ProgressiveImage originalFileName={props.bannerPath} blurDataUrl={post.frontmatter.imagePlaceholder} />
     </BannerContainer>
   )
 }
