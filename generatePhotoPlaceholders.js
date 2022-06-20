@@ -33,7 +33,7 @@ const searchAndReplaceImagePlaceholders = (base64String, imgFileName) => {
 async function resizeImage (s, fileName) {
   try {
     const base64Buffer = await sharp(`./photoUploads/${fileName}`)
-    .resize(s, undefined)
+    .resize(100, undefined)
     .toBuffer()
     const base64Blurred = await sharp(base64Buffer)
     .blur(20)

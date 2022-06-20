@@ -8,10 +8,10 @@ const path = require('path')
 console.log('Photocopier at work...please hold')
 
 const sizesMap = ['original', 640, 750, 828, 1080, 1200, 1920, 2048, 3840]
-const POSTS_FOLDER_PATH = path.join(process.cwd(), './data/posts')
+// const POSTS_FOLDER_PATH = path.join(process.cwd(), './data/posts')
 const dir = '/Users/paulbusby/code/personal-blog/photoUploads'
 const files = fs.readdirSync(dir)
-const postFilePaths = fs.readdirSync(POSTS_FOLDER_PATH)
+// const postFilePaths = fs.readdirSync(POSTS_FOLDER_PATH)
 console.log('files are', files);
 
 // TODO move searchandreplaceimageplaceholders to its own module that we can run in precommit hook. In pre-push hook, we will only run the photouploads.
