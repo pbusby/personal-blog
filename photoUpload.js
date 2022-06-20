@@ -62,21 +62,20 @@ console.log(
 )
 
 function readAndUploadFile(fileName) {
-	console.log('fake upload yo')
-	// const fileContent = fs.readFileSync(path.resolve(__dirname, `./photoUploads/${fileName}`));
-	// const params = {
-	//   Bucket: process.env.AWS_BUCKET_NAME,
-	//   Key: fileName,
-	//   Body: fileContent
-	// }
-	// console.log(fileContent);
-	// s3.upload(params, (err, data) => {
-	//   if (err) {
-	//     console.log(err)
-	//   } else {
-	//     console.log("Uploaded file:", fileName);
-	//   }
-	// })
+	const fileContent = fs.readFileSync(path.resolve(__dirname, `./photoUploads/${fileName}`));
+	const params = {
+	  Bucket: process.env.AWS_BUCKET_NAME,
+	  Key: fileName,
+	  Body: fileContent
+	}
+	console.log(fileContent);
+	s3.upload(params, (err, data) => {
+	  if (err) {
+	    console.log(err)
+	  } else {
+	    console.log("Uploaded file:", fileName);
+	  }
+	})
 }
 
 processPhotosBatch()
