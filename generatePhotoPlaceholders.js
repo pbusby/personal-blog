@@ -1,8 +1,15 @@
-const POSTS_FOLDER_PATH = path.join(process.cwd(), './data/posts')
+const path = require('path')
+const replace = require('replace-in-file')
+const fs = require('fs')
+const sharp = require('sharp')
 
+const PHOTOS_FOLDER_PATH = path.join(process.cwd(), "./photoUploads");
+const POSTS_FOLDER_PATH = path.join(process.cwd(), './data/posts')
 const postFilePaths = fs.readdirSync(POSTS_FOLDER_PATH)
 
-export async function convertPlaceholdersToBase64 () {
+const files = fs.readdirSync(PHOTOS_FOLDER_PATH)
+
+async function convertPlaceholdersToBase64 () {
   await Promise.all(files.map(async (file) => {
     if (file.includes('.jpg') || file.includes('.jpeg')) {
       console.log(file)
@@ -37,4 +44,5 @@ async function resizeImage (s, fileName) {
     console.log(error);
   }
 }
-    
+
+convertPlaceholdersToBase64();

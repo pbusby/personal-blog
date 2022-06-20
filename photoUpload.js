@@ -3,7 +3,7 @@ const fs = require('fs')
 const sharp = require('sharp')
 const AWS = require('aws-sdk')
 const path = require('path')
-const replace = require('replace-in-file')
+// const replace = require('replace-in-file')
 
 console.log('Photocopier at work...please hold')
 
