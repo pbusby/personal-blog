@@ -50,7 +50,7 @@ const ProgressiveImage = ({ _cloudFolder, originalFileName, blurDataUrl }) => {
 				maxWidth: '100%',
 				maxHeight: '100%',
 				opacity: loading ? 0.5 : 1,
-				transition: "opacity 0.6s linear"
+				transition: "opacity 1.5s linear"
 			}}
 		/>
 	)

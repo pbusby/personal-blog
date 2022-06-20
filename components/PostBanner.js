@@ -1,8 +1,5 @@
 import styled from 'styled-components';
-import Image from 'next/image';
 import ProgressiveImage from './ProgressiveImage';
-
-const iamastring = "hello"
 
 const BannerContainer = styled.div`
   position: relative;
@@ -37,7 +34,7 @@ const PostBanner = (props) => {
         objectFit='cover'
         objectPosition='center'
       /> */}
-      <ProgressiveImage originalFileName={props.bannerPath} blurDataUrl={post.frontmatter.imagePlaceholder} />
+      <ProgressiveImage originalFileName={props.bannerPath} blurDataUrl={props.blurDataUrl} />
     </BannerContainer>
   )
 }
