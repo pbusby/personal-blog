@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import styled from 'styled-components'
 import PostCardTile from '../components/PostCardTile.js'
 import FeaturedPostCard from '../components/FeaturedPostCard.js'
@@ -86,6 +87,7 @@ export default function BlogList({ featuredPosts, remainingPosts }) {
 
 export async function getStaticProps() {
 	const posts = getAllPosts()
+	console.log('posts size here', JSON.stringify(posts).length);
 	const featuredPosts = posts.slice(0, 2)
 	const remainingPosts = posts.splice(2)
 

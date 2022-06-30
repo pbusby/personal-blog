@@ -28,7 +28,9 @@ const ProgressiveImage = ({ _cloudFolder, originalFileName, blurDataUrl }) => {
 	const imageToLoad = new Image();
     imageToLoad.src = currentSrc;
     imageToLoad.onload = () =>
-      setVars();
+		setTimeout(() => {
+			setVars();
+		}, 500)
   })
 
 	const setVars = () => {

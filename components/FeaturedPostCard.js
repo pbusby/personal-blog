@@ -24,15 +24,6 @@ const FeaturedPostCard = React.forwardRef(({ onClick, href, post }, ref) => {
 	return (
 		<a href={href} onClick={onClick} ref={ref}>
 			<Card className="aspect-w-16 aspect-h-9">
-				{/* <Image
-        src={`https://res.cloudinary.com/dtb2b6cpx/image/upload/${post.frontmatter.bannerPath}`}
-        alt="Picture of the author"
-        layout='fill'
-				objectFit='cover'
-        objectPosition='center'
-				placeholder='blur'
-				blurDataURL={`https://res.cloudinary.com/dtb2b6cpx/image/upload/${post.frontmatter.bannerPath}`}
-      	/> */}
 				<ProgressiveImage originalFileName={post.frontmatter.bannerPath} blurDataUrl={post.frontmatter.imagePlaceholder}></ProgressiveImage>
 			</Card>
 			<div>
