@@ -1,6 +1,19 @@
 import { gql } from 'apollo-server-micro'
 
 export const typeDefs = gql`
+
+type PostMeta {
+  bannerPath: String
+  date: String
+  description: String
+  imagePlaceholder: String
+  tags: String
+  teaser: String
+  title: String
+  slug: String
+}
+
+
 type Comment {
   id: Int
   postTitle: String
@@ -17,6 +30,7 @@ input CommentInput {
 
 type Query {
   comments(postTitle: String): [Comment]!
+  posts: [PostMeta]!
 }
 
 type Mutation {

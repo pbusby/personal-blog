@@ -22,3 +22,15 @@ model Comment {
   createdAt  DateTime @default(now())
   message    String
 }
+
+model PostMeta {
+  id         Int     @default(autoincrement()) @id
+  bannerPath String
+  date String
+  description String
+  imagePlaceholder String
+  tags String
+  teaser String
+  title String
+  slug String
+}

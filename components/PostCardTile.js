@@ -25,14 +25,6 @@ const PostCardTile = React.forwardRef(({ onClick, href, post }, ref) => {
 	return (
 		<a href={href} onClick={onClick} ref={ref}>
 			<Card>
-				{/* <Image
-        src={`https://res.cloudinary.com/dtb2b6cpx/image/upload/${post.frontmatter.bannerPath}`}
-        layout='fill'
-				objectFit='cover'
-        objectPosition='center'
-				placeholder='blur'
-				blurDataURL={`https://res.cloudinary.com/dtb2b6cpx/image/upload/${post.frontmatter.bannerPath}`}
-      	/> */}
 				<ProgressiveImage originalFileName={post.frontmatter.bannerPath} blurDataUrl={post.frontmatter.imagePlaceholder}/>
 			</Card>
 			<div>

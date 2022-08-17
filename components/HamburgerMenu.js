@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import ReactDOM from 'react-dom';
 
 const MenuBody = styled.div`
   width: 300px;

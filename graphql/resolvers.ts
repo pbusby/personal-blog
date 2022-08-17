@@ -22,6 +22,9 @@ export const resolvers = {
           postTitle: args.postTitle
         }
       })
+    },
+    posts: (_parent, _args, ctx) => {
+      return ctx.prisma.postMeta.findMany();
     }
   },
 

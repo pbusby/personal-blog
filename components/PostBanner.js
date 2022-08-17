@@ -24,16 +24,6 @@ const PostBanner = (props) => {
 
   return (
     <BannerContainer className="aspect-w-16 aspect-h-9">
-      {/* <Image
-        className='bannerImage'
-        src="/images/volcano_landscape_optimized.jpeg"
-        alt="Picture of the author"
-        layout='responsive'
-        width={4032}
-        height={3024}
-        objectFit='cover'
-        objectPosition='center'
-      /> */}
       <ProgressiveImage originalFileName={props.bannerPath} blurDataUrl={props.blurDataUrl} />
     </BannerContainer>
   )
