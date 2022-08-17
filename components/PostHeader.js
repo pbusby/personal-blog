@@ -1,10 +1,8 @@
-import { Chart } from 'react-google-charts'
 import styled from 'styled-components'
 import { useContext, useEffect, useRef } from 'react'
 import { ThemeContext } from 'styled-components'
 import Tag from './Tag.js'
 import SvgArrowDownCircle from '../public/images/arrow-down-circle'
-import MySvg from './mySvg.svg'
 import SvgMySvg from './MapOfPortugal.js'
 const HeaderContainer = styled.div`
 	background: ${({ theme }) => theme.nav};
