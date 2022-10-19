@@ -1,5 +1,3 @@
-// import Document, { Html, Head, Main, NextScript } from "next/document";
-
 // class MainDocument extends Document {
 //   static async getInitialProps(ctx) {
 //     const initialProps = await Document.getInitialProps(ctx);
@@ -22,23 +20,32 @@
 
 // export default MainDocument;
 
-
-import { Html, Head, Main, NextScript } from 'next/document'
+import Document, { Html, Head, Main, NextScript } from 'next/document'
+import { ServerStyleSheet } from 'styled-components'
 import { ThemeBlockingScript } from '../components/ThemeBlockingScript'
 
-export default function Document() {
-  return (
-    <Html>
-      <Head>
-      </Head>
-      <body>
-        <script>0</script>
-        <ThemeBlockingScript />
-        <Main />
-        <NextScript />
-        <div id="modal-root"></div>
-        <div id="hamburger-root"></div>
-      </body>
-    </Html>
-  )
+export default class MyDocument extends Document {
+	static getInitialProps({ renderPage }) {
+		const sheet = new ServerStyleSheet()
+		const page = renderPage(
+			(App) => (props) => sheet.collectStyles(<App {...props} />)
+		)
+		const styleTags = sheet.getStyleElement()
+		return { ...page, styleTags }
+	}
+
+	render() {
+		return (
+			<Html>
+				<Head>{this.props.styleTags}</Head>
+				<body>
+					<ThemeBlockingScript />
+					<Main />
+					<NextScript />
+					<div id="modal-root"></div>
+					<div id="hamburger-root"></div>
+				</body>
+			</Html>
+		)
+	}
 }
