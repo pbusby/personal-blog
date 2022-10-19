@@ -37,7 +37,7 @@ const FeaturedPostsRow = styled.div.attrs({
 
 export default function BlogHome({ featuredPosts, remainingPosts }) {
 	const themeContext = useContext(ThemeContext)
-	const { data, loading, error } = useQuery(GET_POSTS)
+	// const { data, loading, error } = useQuery(GET_POSTS)
 	const [extraPosts, setExtraPosts] = useState([])
 
 	if (error) return `Fetch error! ${error.message}`
