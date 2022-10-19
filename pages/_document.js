@@ -29,7 +29,11 @@ import { ThemeBlockingScript } from '../components/ThemeBlockingScript'
 export default function Document() {
   return (
     <Html>
-      <Head />
+      <Head>
+        <script>
+          let FF_FOUC_FIX;
+        </script>
+      </Head>
       <body>
         <ThemeBlockingScript />
         <Main />
