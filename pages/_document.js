@@ -30,12 +30,9 @@ export default function Document() {
   return (
     <Html>
       <Head>
-        <script>
-          let FF_FOUC_FIX;
-        </script>
       </Head>
       <body>
-        <ThemeBlockingScript />
+        {/* <ThemeBlockingScript /> */}
         <Main />
         <NextScript />
         <div id="modal-root"></div>
