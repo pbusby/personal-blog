@@ -32,7 +32,8 @@ export default function Document() {
       <Head>
       </Head>
       <body>
-        {/* <ThemeBlockingScript /> */}
+        <script>0</script>
+        <ThemeBlockingScript />
         <Main />
         <NextScript />
         <div id="modal-root"></div>
