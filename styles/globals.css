@@ -122,18 +122,6 @@ path {
   }
 }
 
-@keyframes FlipUp {
-  from {
-    transform: rotate(270deg);
-    /* margin-left: 5px;
-    margin-right: 5px; */
-  }
-  to {
-    transform: rotate(90deg);
-    -webkit-transform: rotate3d(1,1n,1,180deg);
-  }
-}
-
 h1 {
   font-family: 'Sarabun';
   font-weight: 700;
@@ -185,9 +173,6 @@ p {
   letter-spacing: -1px;
   font-style: italic;
 
-  > :last-child {
-    margin-bottom: 0;
-  }
 }
 
 ol, ul {}
