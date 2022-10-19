@@ -40,7 +40,7 @@ export default function BlogHome({ featuredPosts, remainingPosts }) {
 	// const { data, loading, error } = useQuery(GET_POSTS)
 	const [extraPosts, setExtraPosts] = useState([])
 
-	if (error) return `Fetch error! ${error.message}`
+	// if (error) return `Fetch error! ${error.message}`
 
 	const fetchMorePosts = async () => {
 		await fetch('api/posts')
