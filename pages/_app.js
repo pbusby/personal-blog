@@ -8,6 +8,7 @@ import apolloClient from '../lib/apollo'
 import { ThemeProvider } from '../components/ThemeBlockingScript'
 import { NavContext } from '../contexts/navContext'
 import Header from '../components/HomeNav'
+import HomeNav from '../components/HomeNav'
 
 function MyApp({ Component, pageProps }) {
 	const [componentMounted] = useTheme()
@@ -24,9 +25,10 @@ function MyApp({ Component, pageProps }) {
 					>
 						<>
 							{/* <Header></Header> */}
-							{/* <Component {...pageProps} /> */}
+							<HomeNav />
+							<Component {...pageProps} />
 							{/* <Footer></Footer> */}
-							{getLayout(<Component {...pageProps} />)}
+							{/* {getLayout(<Component {...pageProps} />)} */}
 						</>
 					</NavContext.Provider>
 				</ThemeProvider>

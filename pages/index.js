@@ -87,9 +87,9 @@ export default function BlogHome({ featuredPosts, remainingPosts }) {
 	)
 }
 
-BlogHome.getLayout = function getLayout(page) {
-	return <HomeLayout>{page}</HomeLayout>
-}
+// BlogHome.getLayout = function getLayout(page) {
+// 	return <HomeLayout>{page}</HomeLayout>
+// }
 
 export async function getStaticProps() {
 	const posts = getAllPosts()
