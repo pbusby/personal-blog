@@ -29,7 +29,7 @@ export const resolvers = {
   },
 
   Mutation: {
-    createComment: (_parent, args, ctx) => {ß
+    createComment: (_parent, args, ctx) => {
       return ctx.prisma.comment.create({
         data: {
           postTitle: args.postTitle,
