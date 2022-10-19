@@ -1,12 +1,15 @@
 import { createGlobalStyle } from 'styled-components';
 export const GlobalStyles = createGlobalStyle`
+  html {
+    // transition: background 0.50s linear;
+  }
   body {
-    background: ${({ theme }) => theme.body};
-    color: ${({ theme }) => theme.text};
-    transition: all 0.50s linear;
+    background: var(--color-background);
+    color: var(--color-text);
+    // transition: all 0.50s linear;
   }
   article {
-    background: ${({ theme }) => theme.article};
+    background: var(--color-background);
   }
   .bannerImage {
     height: 500px;

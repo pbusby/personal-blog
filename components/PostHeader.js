@@ -1,12 +1,19 @@
+import React from "react";
 import styled from 'styled-components'
 import { useContext, useEffect, useRef } from 'react'
 import { ThemeContext } from 'styled-components'
 import Tag from './Tag.js'
 import SvgArrowDownCircle from '../public/images/arrow-down-circle'
-import SvgMySvg from './MapOfPortugal.js'
-const HeaderContainer = styled.div`
-	background: ${({ theme }) => theme.nav};
-	transition: all 0.5s linear;
+import Portugal from './Portugal.js'
+import Belgium from './Belgium.js'
+import LazyLoad from 'react-lazyload';
+import RegionalMap from "@/components/RegionalMap";
+
+const HeaderContainer = styled.section`
+	// had to add this duplicate because of webkit transition delay bug
+	// https://stackoverflow.com/questions/22069877/css-transitions-strange-unwanted-delay-in-webkit-browsers-chrome-and-safari
+	color: var(--color-text);
+	background: var(--color-nav);
 	width: 100%;
 	position: relative;
 	min-height: 300px;
@@ -85,25 +92,22 @@ const Date = styled.p`
 	font-size: 10px;
 `
 
-const PostHeader = (props) => {
+const PostHeader = React.forwardRef((props, ref) => {
 	const themeContext = useContext(ThemeContext)
-  debugger;
 	const tags = props.frontmatter.tags?.split(',')
-	const mappity = useRef()
+	const mapNode = useRef()
 	useEffect(() => {
-		const mapSvg = mappity.current
-		const regionPath = mapSvg.children[props.frontmatter.mapRegion]
+		const mapSvg = mapNode.current
+		const regionPath = mapSvg?.children ? mapSvg?.children[props.frontmatter.mapRegion] : undefined
 		if (regionPath) {
 			regionPath.style.transition = 'all 0.5s linear'
-			debugger
 			setTimeout(() => {
 				regionPath.style.fill = '#43978c'
 			}, 100)
 		}
-		console.log('current theme', themeContext)
 	})
 	return (
-		<HeaderContainer className="mx-auto p-5">
+		<HeaderContainer ref={ref} className="mx-auto p-5">
 			{/* <h1>{`Current theme: ${JSON.stringify(themeContext)}`}</h1> */}
 			<TitleContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-center gap-3">
 				<Title className="col-span-2 md:col-span-1">
@@ -131,10 +135,13 @@ const PostHeader = (props) => {
 				</Teaser>
 				{/* <a href="https://mapchart.net/portugal.html"> */}
 				<div
-					style={{ height: 'auto', width: '250px' }}
+					style={{ height: '250px', width: '250px' }}
 					className="hidden md:block"
 				>
-					<SvgMySvg theme={themeContext} ref={mappity}></SvgMySvg>
+					{/* <SvgMySvg theme={themeContext} ref={mappity}></SvgMySvg> */}
+					<LazyLoad height={250}>
+					<RegionalMap countryName={props.frontmatter.country} theme={themeContext} grandChildRef={mapNode}></RegionalMap>
+					</LazyLoad>
 				</div>
 
 				{/* <Map id="regions_div" className="hidden md:block"> */}
@@ -165,6 +172,6 @@ const PostHeader = (props) => {
 			</Teaser>
 		</HeaderContainer>
 	)
-}
+});
 
 export default PostHeader

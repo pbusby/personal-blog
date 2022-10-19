@@ -52,10 +52,10 @@ const Footer = () => {
       </LinksContainer>
       <SocialIcons>
         <LogoWrapper>
-          <InstagramLogo fill={themeContext.text}></InstagramLogo>
+          <InstagramLogo></InstagramLogo>
         </LogoWrapper>
         <LogoWrapper>
-          <GithubLogo fill={themeContext.text}></GithubLogo>
+          <GithubLogo></GithubLogo>
         </LogoWrapper>
       </SocialIcons>
     </FooterContainer>

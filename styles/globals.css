@@ -19,11 +19,36 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  transition: background 0.5s linear, color 0.5s linear;
+  background: var(--color-background);
+  color: var(--color-text);
+}
+nav {
+  background: var(--color-nav);
+  color: var(--color-text);
+  transition: background 0.5s linear, color 0.5s linear;
+}
+svg {
+  transition: all 0.5s linear;
+}
+path {
+  transition: all 0.5s linear;
 }
 
-/* svg {
-  display: inline;
-} */
+.icon {
+  display: inline-flex;
+  align-self: center;
+}
+
+.icon svg, .icon img {
+  height: 0.8em;
+  fill: currentColor;
+}
+
+.icon.baseline svg, .icon img {
+  top: .4em;
+  position: relative;
+}
 
 .logo-text {
   /* font-family: 'Solari'; */
@@ -33,14 +58,13 @@ body {
 }
 
 .section-title {
-  font-family: 'BebasNeue-Regular';
-  letter-spacing: 2px;
-  /* font-family: 'Sarabun'; */
-  /* color: black !important; */
+  /* font-family: 'BebasNeue-Regular'; */
+  /* letter-spacing: 2px; */
+  font-family: 'Sarabun';
   font-size: 25px;
   margin-bottom: 10px;
   display: inline !important;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
 }
 
 /* .extra-text {
@@ -67,16 +91,47 @@ body {
 
 .logo-badge {
   transform: rotate(90deg);
-  margin-left: 5px;
+  /* margin-left: 5px; */
   margin-right: 5px;
-  transition: transform 0.35s linear;
+  /* transition: transform 0.35s linear; */
+  animation-name: FlipUp;
+  animation-duration: 2s;
 }
 
 .logo-badge-rotated {
-  /* transform: rotate(270deg); */
-  -webkit-transform: rotate3d(0,1,0,180deg);
+  transform: rotate(270deg);
+  /* -webkit-transform: rotate3d(0,1,0,180deg);
   margin-left: 5px;
-  transition: transform 0.35s linear;
+  transition: transform 0.35s linear; */
+  /* margin-left: 5px; */
+  margin-bottom: 0;
+  animation-name: FlipDown;
+  animation-duration: 0.8s;
+}
+
+@keyframes FlipDown {
+  from {
+    transform: rotate(90deg);
+    /* margin-left: 5px;
+    margin-right: 5px; */
+  }
+  to {
+    transform: rotate(270deg);
+    -webkit-transform: rotate3d(0,1,0,180deg);
+    /* margin-left: 5px;   */
+  }
+}
+
+@keyframes FlipUp {
+  from {
+    transform: rotate(270deg);
+    /* margin-left: 5px;
+    margin-right: 5px; */
+  }
+  to {
+    transform: rotate(90deg);
+    -webkit-transform: rotate3d(1,1n,1,180deg);
+  }
 }
 
 h1 {
@@ -144,5 +199,26 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+article {
+  background: var(--color-background);
+  transition: background 0.5s linear, color 0.5s linear;
+}
+section {
+  transition: background 0.5s linear, color 0.5s linear;
+}
+.bannerImage {
+  height: 500px;
+  z-index: 0;
+}
+.bannerText {
+  position: relative;
+  z-index: 1;
+}
+.bannerContainer {
+  position: relative;
+  height: 500px;
+  margin-bottom: 40px;
 }
 

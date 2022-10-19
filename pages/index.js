@@ -3,14 +3,14 @@ import { useState } from 'react'
 import { useRouter } from 'next/router'
 import styled from 'styled-components'
 import PostCardTile from '../components/PostCardTile.js'
-import FeaturedPostCard from '../components/FeaturedPostCard.js'
+import FeaturedPostCard from '../components/FeaturedPostCard'
 import { getAllPosts } from '../utils/mdx'
 import SvgArrowCircleRight from '../public/images/arrow-right-circle'
 import SvgArrowDownCircle from '../public/images/arrow-down-circle'
 import { useContext } from 'react'
 import { ThemeContext } from 'styled-components'
-import { gql, useMutation, useQuery } from '@apollo/client'
-import { MediaStoreData } from 'aws-sdk'
+import { gql, useQuery } from '@apollo/client'
+import HomeLayout from "@/layouts/HomeLayout";
 
 const GET_POSTS = gql`
 	query POSTS {
@@ -27,10 +27,6 @@ const GET_POSTS = gql`
 	}
 `
 
-const Wrapper = styled.div`
-	background: ${({ theme }) => theme.body};
-`
-
 const FeaturedPostWrapper = styled.div``
 
 const FeaturedPostsRow = styled.div.attrs({
@@ -39,40 +35,12 @@ const FeaturedPostsRow = styled.div.attrs({
 	margin-bottom: 70px;
 `
 
-const RightArrow = styled.span`
-	font-size: 25px;
-	font-weight: 800;
-	margin-left: 20px;
-	color: ${({ theme }) => theme.text};
-	transition: all 0.5s linear;
-`
-
-const DownArrow = styled.span`
-	font-size: 25px;
-	font-weight: 800;
-	display: inline-block;
-	transform: rotate(90deg);
-	margin-left: 20px;
-	color: ${({ theme }) => theme.text};
-	transition: all 0.5s linear;
-`
-
-const LettersContainer = styled.div`
-	img {
-		// margin-left: 2px;
-		display: inline-block;
-		width: 20px;
-	}
-`
-
-export default function BlogList({ featuredPosts, remainingPosts }) {
+export default function BlogHome({ featuredPosts, remainingPosts }) {
 	const themeContext = useContext(ThemeContext)
 	const { data, loading, error } = useQuery(GET_POSTS)
 	const [extraPosts, setExtraPosts] = useState([])
 
-	if (loading) return 'Fetching...'
 	if (error) return `Fetch error! ${error.message}`
-	debugger
 
 	const fetchMorePosts = async () => {
 		await fetch('api/posts')
@@ -80,7 +48,6 @@ export default function BlogList({ featuredPosts, remainingPosts }) {
 			.then((data) => {
 				setExtraPosts(data)
 			})
-		debugger
 		console.log('fetched more')
 	}
 
@@ -95,7 +62,7 @@ export default function BlogList({ featuredPosts, remainingPosts }) {
 				<FeaturedPostsRow>
 					{featuredPosts.map((post, index) => (
 						<FeaturedPostWrapper key={index} className="col-span-1">
-							<Link href={`posts/${post.slug}`}>
+							<Link href={`posts/${post.slug}`} passHref>
 								<FeaturedPostCard post={post} />
 							</Link>
 						</FeaturedPostWrapper>
@@ -108,18 +75,20 @@ export default function BlogList({ featuredPosts, remainingPosts }) {
 					className="inline ml-2 mb-2"
 				></SvgArrowCircleRight>
 				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-					{/* <span onClick={fetchMorePosts}>&#10132;</span> */}
 					{remainingPosts.map((post, index) => (
 						<Link key={index} href={`posts/${post.slug}`}>
 							<PostCardTile post={post} />
 						</Link>
 					))}
-					{/* <span>&#10132;</span> */}
 					<div>{JSON.stringify(extraPosts)}</div>
 				</div>
 			</div>
 		</>
 	)
+}
+
+BlogHome.getLayout = function getLayout(page) {
+	return <HomeLayout>{page}</HomeLayout>
 }
 
 export async function getStaticProps() {

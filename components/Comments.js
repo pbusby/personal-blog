@@ -172,7 +172,6 @@ const Comments = (props) => {
       <CommentSubmissionForm>
       <form
         onSubmit={e => {
-          debugger
           e.preventDefault();
           createComment({ variables: { message: commentValue, postTitle: props.postMeta.title, authorName: 'Petey Pablo'} });
         }}

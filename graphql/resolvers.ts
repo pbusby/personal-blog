@@ -29,8 +29,7 @@ export const resolvers = {
   },
 
   Mutation: {
-    createComment: (_parent, args, ctx) => {
-      debugger
+    createComment: (_parent, args, ctx) => {ß
       return ctx.prisma.comment.create({
         data: {
           postTitle: args.postTitle,

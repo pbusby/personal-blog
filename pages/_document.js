@@ -24,12 +24,14 @@
 
 
 import { Html, Head, Main, NextScript } from 'next/document'
+import { ThemeBlockingScript } from '../components/ThemeBlockingScript'
 
 export default function Document() {
   return (
     <Html>
       <Head />
       <body>
+        <ThemeBlockingScript />
         <Main />
         <NextScript />
         <div id="modal-root"></div>

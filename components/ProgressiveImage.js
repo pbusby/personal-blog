@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { useEffect, useState, useRef, cloneElement } from 'react'
+import LazyLoad from 'react-lazyload'
 
 // cloudFolder
 // fileName
@@ -9,10 +10,36 @@ import { useEffect, useState, useRef, cloneElement } from 'react'
 // TODO: decide if you want to put images in folders in the s3. Here is the original example:
 // `https://arrivals-travel.s3.eu-west-1.amazonaws.com/${cloudFolder}/${originalFileName}-1080.jpeg`
 
-const ProgressiveImage = ({ _cloudFolder, originalFileName, blurDataUrl }) => {
+const LowfiImg = styled.img`
+	transition: opacity 1s ease-in-out;
+	position: absolute;
+	object-fit: cover;
+	object-position: center;
+	width: 0px;
+	min-width: 100%;
+	min-height: 100%;
+	max-width: 100%;
+	max-height: 100%;
+`
+
+const HifiImg = styled.img`
+	position: absolute;
+	object-fit: cover;
+	object-position: center;
+	width: 0px;
+	min-width: 100%;
+	min-height: 100%;
+	max-width: 100%;
+	max-height: 100%;
+`
+
+const ProgressiveImage = ({ originalFileName, blurDataUrl }) => {
 	const [loading, setLoading] = useState(true)
-	const fallbackBlurDataUrl = 'data:image/jpg;base64,/9j/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCABLAGQDASIAAhEBAxEB/8QAGwAAAwEBAQEBAAAAAAAAAAAAAgMEAAUBBgf/xAAeEAADAQACAwEBAAAAAAAAAAAAAQIDESESMWFRE//EABoBAQEBAQEBAQAAAAAAAAAAAAIDAQQABQb/xAAaEQEBAAMBAQAAAAAAAAAAAAAAAQIDEhMR/9oADAMBAAIRAxEAPwD46chs5DZgbMH6Lt8LkucxsQHMDJkzt7l5Ej4R5KGSj3ZcmQh+YiRsMztvKzJlmTIM2VZUTubeXSxouxr0crKi3KidyKYunNdezE830Yn9L4/MlIakGWGmL0ZyNINIBBoz0KYCXQSBR6H1KYDTDmhPJlQbtOa1sWUZ6HNmx0aGerfN1stCzLX6cXPUqy2+mds4dqdejHPnboxnTOXxksZIqWMk5/U5gagkDIxIN2nMGRgkjxondykwDyDyExdAu5SYDVBKxDZ55GTc9wtjQoz1+nMmx0aDm4Li6q169mIFr0YfqHLmSh0SaIKIzOT0UmAZkbMDIzHTmG7FJgR4njkq/mDUEMtikxR1Im0W3Ai5IXcXxJQDH3ImkZNw2PEw5oXweopjuTsPV9GFLkxT2D4uzzKc8jzNLosySM6XkDGXwdOXwdCX4NSQcsjkSvICsy5pfgu0jnzyL4515k2kHS0SJdEjlyyo1z7gTUF1pCKSJd1O1I4N4FDQIpsoleJhvBh+lY//2Q=='
-	const [currentSrc, setCurrentSrc] = useState(blurDataUrl ? blurDataUrl : fallbackBlurDataUrl)
+	const fallbackBlurDataUrl =
+		'data:image/jpg;base64,/9j/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCABLAGQDASIAAhEBAxEB/8QAGwAAAwEBAQEBAAAAAAAAAAAAAgMEAAUBBgf/xAAeEAADAQACAwEBAAAAAAAAAAAAAQIDESESMWFRE//EABoBAQEBAQEBAQAAAAAAAAAAAAIDAQQABQb/xAAaEQEBAAMBAQAAAAAAAAAAAAAAAQIDEhMR/9oADAMBAAIRAxEAPwD46chs5DZgbMH6Lt8LkucxsQHMDJkzt7l5Ej4R5KGSj3ZcmQh+YiRsMztvKzJlmTIM2VZUTubeXSxouxr0crKi3KidyKYunNdezE830Yn9L4/MlIakGWGmL0ZyNINIBBoz0KYCXQSBR6H1KYDTDmhPJlQbtOa1sWUZ6HNmx0aGerfN1stCzLX6cXPUqy2+mds4dqdejHPnboxnTOXxksZIqWMk5/U5gagkDIxIN2nMGRgkjxondykwDyDyExdAu5SYDVBKxDZ55GTc9wtjQoz1+nMmx0aDm4Li6q169mIFr0YfqHLmSh0SaIKIzOT0UmAZkbMDIzHTmG7FJgR4njkq/mDUEMtikxR1Im0W3Ai5IXcXxJQDH3ImkZNw2PEw5oXweopjuTsPV9GFLkxT2D4uzzKc8jzNLosySM6XkDGXwdOXwdCX4NSQcsjkSvICsy5pfgu0jnzyL4515k2kHS0SJdEjlyyo1z7gTUF1pCKSJd1O1I4N4FDQIpsoleJhvBh+lY//2Q=='
+	const [currentSrc, setCurrentSrc] = useState(
+		blurDataUrl ? blurDataUrl : fallbackBlurDataUrl
+	)
 	const [srcSet, setSrcSet] = useState('')
 	const defaultImageUrl = `https://arrivals-travel.s3.eu-west-1.amazonaws.com/${originalFileName}-1080.jpeg`
 	const url640 = `https://arrivals-travel.s3.eu-west-1.amazonaws.com/${originalFileName}-640.jpeg`
@@ -25,22 +52,34 @@ const ProgressiveImage = ({ _cloudFolder, originalFileName, blurDataUrl }) => {
 	const url3840 = `https://arrivals-travel.s3.eu-west-1.amazonaws.com/${originalFileName}-3840.jpeg`
 
 	useEffect(() => {
-	const imageToLoad = new Image();
-    imageToLoad.src = currentSrc;
-    imageToLoad.onload = () =>
-		setTimeout(() => {
-			setVars();
-		}, 500)
-  })
+		const imageToLoad = new Image()
+		imageToLoad.src = currentSrc
+		imageToLoad.onload = () =>
+			setTimeout(() => {
+			setVars()
+		}, 200)
+	})
 
 	const setVars = () => {
 		setLoading(false)
 		setCurrentSrc(defaultImageUrl)
-		setSrcSet(`${url640} 640w, ${url750} 750w, ${url828} 828w, ${url1080} 1080w, ${url1200} 1200w, ${url1920} 1920w, ${url2048} 2048w, ${url3840} 3840w`)
+		setSrcSet(
+			`${url640} 640w, ${url750} 750w, ${url828} 828w, ${url1080} 1080w, ${url1200} 1200w, ${url1920} 1920w, ${url2048} 2048w, ${url3840} 3840w`
+		)
 	}
 
+	const customClass = loading ? 'loading' : 'loaded'
+
 	return (
-		<img
+		<>
+			<HifiImg className={customClass} src={currentSrc} srcSet={srcSet} />
+			<LowfiImg
+				className={customClass}
+				srcSet={blurDataUrl}
+				style={!loading ? { opacity: 0 } : { opacity: 1 }}
+			/>
+			{/* <img
+			className={customClass}
 			src={currentSrc}
 			srcSet={srcSet}
 			style={{
@@ -51,10 +90,11 @@ const ProgressiveImage = ({ _cloudFolder, originalFileName, blurDataUrl }) => {
 				minHeight: '100%',
 				maxWidth: '100%',
 				maxHeight: '100%',
-				opacity: loading ? 0.5 : 1,
-				transition: "opacity 1.5s linear"
+				// opacity: loading ? 0.8 : 1,
+				// transition: "opacity 1.4s linear"
 			}}
-		/>
+		/> */}
+		</>
 	)
 }
 

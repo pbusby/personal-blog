@@ -1,7 +1,7 @@
 export const lightTheme = {
   name: 'light',
   body: '#efefef',
-  article: '#FFF',
+  article: '#efefef',
   nav: '#FFF',
   text: '#000000',
   toggleBorder: '#FFF',
@@ -16,4 +16,17 @@ export const darkTheme = {
   text: '#FAFAFA',
   toggleBorder: '#6B8096',
   background: '#999'
+}
+
+export const COLORS = {
+  light: {
+    nav: '#FFF',
+    background: '#efefef',
+    text: '#000000',
+  },
+  dark: {
+    background: '#363537',
+    nav: '#363537',
+    text: '#FAFAFA',
+  }
 }

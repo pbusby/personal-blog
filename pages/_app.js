@@ -1,35 +1,37 @@
 import '../styles/globals.css'
+import { useState } from 'react'
 import { useTheme } from '../components/useTheme.js'
 import axios from 'axios'
-import { GlobalStyles } from '../components/globalStyles.js'
 import Footer from '../components/Footer.js'
 import { ApolloProvider } from '@apollo/client'
 import apolloClient from '../lib/apollo'
-import { MyThemeProvider } from '../context/global-data.js'
-import Header from '../components/Header'
-import { createContext } from 'react';
+import { ThemeProvider } from '../components/ThemeBlockingScript'
+import { NavContext } from '../contexts/navContext'
+import Header from '../components/HomeNav'
 
 function MyApp({ Component, pageProps }) {
-  const [theme, toggleTheme, componentMounted] = useTheme();
+	const [componentMounted] = useTheme()
+	const [isPostHeaderVisible, setIsPostHeaderVisible] = useState(false)
 
-  let isMobile
-  if (typeof window !== "undefined") {
-    isMobile = window.matchMedia('(max-width: 992px)').matches
-  }
+	const getLayout = Component.getLayout || ((page) => page)
 
-  if (!componentMounted) return <div/>
-  return (
-    <ApolloProvider client={apolloClient}>
-      <MyThemeProvider>
-          <>
-            <GlobalStyles/>
-            <Header isMobile={isMobile}></Header>
-            <Component {...pageProps} />
-            <Footer></Footer>
-          </>
-      </MyThemeProvider>
-    </ApolloProvider>
-  )
+	if (!componentMounted) return <div />
+	return (
+		<ApolloProvider client={apolloClient}>
+				<ThemeProvider>
+					<NavContext.Provider
+						value={[isPostHeaderVisible, setIsPostHeaderVisible]}
+					>
+						<>
+							{/* <Header></Header> */}
+							{/* <Component {...pageProps} /> */}
+							{/* <Footer></Footer> */}
+							{getLayout(<Component {...pageProps} />)}
+						</>
+					</NavContext.Provider>
+				</ThemeProvider>
+		</ApolloProvider>
+	)
 }
 
 export default MyApp

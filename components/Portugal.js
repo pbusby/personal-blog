@@ -1,20 +1,19 @@
 import * as React from 'react'
 import { forwardRef } from 'react'
 
-const SvgMySmolSvg = (props, ref) => (
+const Portugal = (props, ref) => (
 	<svg
 		id="map"
 		width="100%"
-		height="auto"
 		strokeLinecap="round"
 		strokeLinejoin="round"
 		data-original-v-b="0 0 814.6 935.94"
-		preserveAspectRatio="xMidYMid slice"		
+		preserveAspectRatio="xMinYMin meet"		
 		viewBox="77.396 765.77 95.337 95.337"
 		xmlns="http://www.w3.org/2000/svg"
 		style={{
-			fill: props.theme.text,
-			stroke: props.theme.body,
+			fill: "var(--color-text)",
+			stroke: "var(--color-background)",
 			transition: "all 0.50s linear"
 		}}
 		strokeWidth={0.3}
@@ -101,6 +100,6 @@ const SvgMySmolSvg = (props, ref) => (
 	</svg>
 )
 
-const ForwardRef = forwardRef(SvgMySmolSvg)
+const ForwardRef = forwardRef(Portugal)
 export default ForwardRef
 

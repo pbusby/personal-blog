@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import ProgressiveImage from './ProgressiveImage';
+import LazyLoad from 'react-lazyload';
 
 const BannerContainer = styled.div`
   position: relative;
@@ -23,9 +24,11 @@ const PostBanner = (props) => {
   //https://nextjs.org/docs/api-reference/next/image
 
   return (
+    <LazyLoad>
     <BannerContainer className="aspect-w-16 aspect-h-9">
       <ProgressiveImage originalFileName={props.bannerPath} blurDataUrl={props.blurDataUrl} />
     </BannerContainer>
+    </LazyLoad>
   )
 }
 

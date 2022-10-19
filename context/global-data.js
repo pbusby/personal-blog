@@ -12,10 +12,13 @@ export const MyThemeContext = createContext({
 
 
 export const MyThemeProvider = ({ children }) => {
+  // https://www.joshwcomeau.com/react/dark-mode/
+  // https://github.com/vercel/next.js/discussions/12533
+  const [theme, toggleTheme, componentMounted] = useTheme();
+  // const theme = useTheme();
 
-
-  const theme = useTheme();
   const themeMode = theme === 'light' ? lightTheme : darkTheme
+
   const [myTheme, setMyTheme] = useState(themeMode)
 
   // const updateMyTheme = useCallback(

@@ -12,7 +12,7 @@ const TagElement = styled.span`
   border-radius: 4px;
 `
 
-const Tag = ({ theme, text }) => {
+const Tag = ({ text }) => {
   return (
     <TagElement>{text}</TagElement>
   )
