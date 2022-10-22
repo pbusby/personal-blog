@@ -28,6 +28,12 @@ nav {
   color: var(--color-text);
   transition: background 0.5s linear, color 0.5s linear;
 }
+main {
+  background: var(--color-background);
+  color: var(--color-text);
+
+}
+
 svg {
   transition: all 0.5s linear;
 }
@@ -206,8 +212,14 @@ section {
   height: 500px;
   margin-bottom: 40px;
 }
+.special-class {
+  background: var(--color-background);
+  color: var(--color-text);
+
+}
 html {
   visibility: visible;
   opacity: 1;
 }
+
 
