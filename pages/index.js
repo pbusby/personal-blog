@@ -1,15 +1,12 @@
 import Link from 'next/link'
 import { useState } from 'react'
-import { useRouter } from 'next/router'
 import styled from 'styled-components'
 import PostCardTile from '../components/PostCardTile.js'
 import FeaturedPostCard from '../components/FeaturedPostCard'
 import { getAllPosts } from '../utils/mdx'
 import SvgArrowCircleRight from '../public/images/arrow-right-circle'
 import SvgArrowDownCircle from '../public/images/arrow-down-circle'
-import { useContext } from 'react'
-import { ThemeContext } from 'styled-components'
-import { gql, useQuery } from '@apollo/client'
+=import { gql, useQuery } from '@apollo/client'
 import HomeLayout from "@/layouts/HomeLayout";
 
 const GET_POSTS = gql`
@@ -36,7 +33,6 @@ const FeaturedPostsRow = styled.div.attrs({
 `
 
 export default function BlogHome({ featuredPosts, remainingPosts }) {
-	const themeContext = useContext(ThemeContext)
 	// const { data, loading, error } = useQuery(GET_POSTS)
 	const [extraPosts, setExtraPosts] = useState([])
 
@@ -56,7 +52,6 @@ export default function BlogHome({ featuredPosts, remainingPosts }) {
 			<div className="mx-auto p-12">
 				<span className="section-title">Recent</span>
 				<SvgArrowDownCircle
-					theme={themeContext}
 					className="inline ml-2 mb-2"
 				></SvgArrowDownCircle>
 				<FeaturedPostsRow>
@@ -71,7 +66,6 @@ export default function BlogHome({ featuredPosts, remainingPosts }) {
 
 				<span className="section-title">Departed</span>
 				<SvgArrowCircleRight
-					theme={themeContext}
 					className="inline ml-2 mb-2"
 				></SvgArrowCircleRight>
 				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
