@@ -1,8 +1,6 @@
 import '../styles/globals.css'
 import { useState } from 'react'
 import { useTheme } from '../components/useTheme.js'
-import axios from 'axios'
-import Footer from '../components/Footer.js'
 import { ApolloProvider } from '@apollo/client'
 import apolloClient from '../lib/apollo'
 import { ThemeProvider } from '../components/ThemeBlockingScript'

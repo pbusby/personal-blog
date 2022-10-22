@@ -206,4 +206,8 @@ section {
   height: 500px;
   margin-bottom: 40px;
 }
+html {
+  visibility: visible;
+  opacity: 1;
+}
 
