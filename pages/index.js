@@ -6,7 +6,7 @@ import FeaturedPostCard from '../components/FeaturedPostCard'
 import { getAllPosts } from '../utils/mdx'
 import SvgArrowCircleRight from '../public/images/arrow-right-circle'
 import SvgArrowDownCircle from '../public/images/arrow-down-circle'
-=import { gql, useQuery } from '@apollo/client'
+import { gql, useQuery } from '@apollo/client'
 import HomeLayout from "@/layouts/HomeLayout";
 
 const GET_POSTS = gql`
