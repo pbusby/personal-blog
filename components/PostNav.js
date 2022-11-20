@@ -13,7 +13,7 @@ const Nav = styled.nav`
 	width: 100%;
 	display: grid;
 	align-items: center;
-	grid-template-columns: 1fr 1fr;
+	grid-template-columns: repeat(11, 1fr);
 	padding: 0 1.25rem;
 	&.shadowed {
 		@media (max-width: 768px) {
@@ -37,6 +37,7 @@ const Nav = styled.nav`
 const LogoContainer = styled.div`
 	// display: flex;
 	align-items: center;
+	grid-column: 1 / span 10;
 	span {
 		margin-right: 10px;
 	}
@@ -51,6 +52,9 @@ const PostTitle = styled.h3`
 	font-size: 18px;
 	opacity: 0;
 	transition: opacity 0.5s ease-in-out;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
 	&.visible {
 		opacity: 1;
 	}
@@ -85,7 +89,7 @@ const PostNav = ({ postTitle }) => {
 	}
 
 	return (
-	<Nav className={"shadowed"}>
+		<Nav className={'shadowed'}>
 			<LogoContainer>
 				<div style={{ display: 'flex', alignItems: 'center' }}>
 					{/* <SvgHamburgerMenu

@@ -74,7 +74,7 @@ export default function BlogHome({ featuredPosts, remainingPosts }) {
 							<PostCardTile post={post} />
 						</Link>
 					))}
-					<div>{JSON.stringify(extraPosts)}</div>
+					{/* <div>{JSON.stringify(extraPosts)}</div> */}
 				</div>
 			</div>
 		</>

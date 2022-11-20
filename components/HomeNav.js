@@ -10,8 +10,9 @@ import SideDrawer from './SideDrawer.js'
 const Nav = styled.nav`
 	// had to add this duplicate because of webkit transition delay bug
 	// https://stackoverflow.com/questions/22069877/css-transitions-strange-unwanted-delay-in-webkit-browsers-chrome-and-safari
-	color: var(--color-text); 
-	position: sticky;
+	color: var(--color-text);
+	background: var(--color-nav);
+	// position: sticky;
 	top: 0;
 	height: 80px;
 	width: 100%;
@@ -56,6 +57,7 @@ const NavLinks = styled.div`
 	@media (min-width: 768px) {
 		display: flex;
 	}
+
 `
 
 const HomeNav = () => {
@@ -91,13 +93,13 @@ const HomeNav = () => {
 			{showNavLinks && (
 				<NavLinks className="">
 					<Link href="/">
-						<h2 className="next-link">About</h2>
+						<h2 className="next-link sliding-underline">About</h2>
 					</Link>
 					<Link href="/">
-						<h2 className="next-link">Contact</h2>
+						<h2 className="next-link sliding-underline">Contact</h2>
 					</Link>
 					<Link href="/">
-						<h2 className="next-link">Photography</h2>
+						<h2 className="next-link sliding-underline">Photography</h2>
 					</Link>
 				</NavLinks>
 			)}

@@ -6,28 +6,36 @@ import SvgArrowCircleRight from '../public/images/arrow-right-circle';
 
 
 const EmailFormContainer = styled.div`
-  background: ${({theme}) => theme.body};
+  display: flex;
+  align-items: center;
   input {
-    background: ${({theme}) => theme.body};
+    background-color: var(--color-background);
     padding: 8px;
     outline: none;
     font-size: 12px;
+    border-radius: 4px;
   }
+  @media (max-width: 400px) {
+    justify-content: space-between;
+    }
 `
 
 const InputWrapper = styled.div`
   display: flex;
   position: relative;
   align-items: center;
-  border: 1px solid ${(theme) => theme.text};
+  border: 1px solid;
+  border-radius: 4px;
 `
 
 const ButtonWrapper = styled.div`
   margin-right: 7px;
 `
-const Cta = styled.h4`
-  position: absolute;
-  top: -25px;
+const Cta = styled.h3`
+  padding-right: 10px;
+  font-size: 18px;
+  // position: absolute;
+  // top: -25px;
 `
 
 const SubscribeInput = () => {
@@ -42,10 +50,10 @@ const SubscribeInput = () => {
 
   return (
     <EmailFormContainer>
+      <Cta>Subscribe</Cta>
       <form onSubmit={onSubmit}>
-        <InputWrapper>
-          <Cta>Don't miss a flight...</Cta>
-          <input value={emailInput} type="text" placeholder="Email Address" onChange={(e) => setEmailInput(e.target.value)}></input>
+        <InputWrapper> 
+          <input value={emailInput} type="text" placeholder="your email" onChange={(e) => setEmailInput(e.target.value)}></input>
           {/* <button onClick={() => console.log(emailInput)}>Submit</button> */}
           <ButtonWrapper>
             <SvgArrowCircleRight

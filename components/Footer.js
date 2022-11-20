@@ -1,26 +1,43 @@
 import styled from "styled-components";
 import Link from "next/link";
 import SubscribeInput from "./SubscribeInput";
-import { useContext } from "react";
-import { ThemeContext } from "styled-components"
 
 import InstagramLogo from "../public/images/InstagramLogo.js";
 import GithubLogo from "../public/images/GithubLogo.js";
 
-const FooterContainer = styled.div`
- width: 100%;
- display: flex;
+const FooterContainer = styled.footer`
+padding: 0 3rem;
+ display: grid;
+ align-items: center;
+ grid-template-columns: 1 / -1;
+ h2 {
+  letter-spacing: 2px;
+ }
+@media (min-width: 768px) {
+  grid-template-columns: 1fr 1fr;
+  h2 {
+    padding-right: 60px;
+   }
+}
+@media (min-width: 400px) {
+  justify-content: space-between;
+}
  height: 150px;
  background: ${(theme) => theme.body};
- justify-content: space-around;
- align-items: center;
 `
 
 const LinksContainer = styled.div`
   cursor: pointer;
-  width: 200px;
   display: flex;
   justify-content: space-between;
+  h2 {
+    padding-right: 20px;
+  }
+  @media (min-width: 768px) {
+    h2 {
+      padding-right: 45px;
+     }
+  }
 `
 
 const SocialIcons = styled.div`
@@ -39,12 +56,20 @@ const LogoWrapper = styled.div`
   width: 20px;
 `
 
+const FlexGroup = styled.div`
+  display: flex;
+  @media (max-width: 400px) {
+  justify-content: space-between;
+  }
+
+`
+
 const Footer = () => {
-  const themeContext = useContext(ThemeContext);
 
   return (
     <FooterContainer>
       <SubscribeInput></SubscribeInput>
+      {/* <FlexGroup> */}
       <LinksContainer>
         <Link href="https://www.google.com"><h2>About</h2></Link>
         <Link href="https://www.google.com"><h2>Contact</h2></Link>
@@ -58,6 +83,7 @@ const Footer = () => {
           <GithubLogo></GithubLogo>
         </LogoWrapper>
       </SocialIcons>
+      {/* </FlexGroup> */}
     </FooterContainer>
   )
 }

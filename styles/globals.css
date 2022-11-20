@@ -5,72 +5,79 @@
 /* https://fonts.google.com/specimen/Oswald#standard-styles */
 @import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans:ital,wght@0,300;0,400;1,300&family=Merriweather:ital,wght@0,300;0,400;1,300&family=Sarabun:wght@600;700;800&display=swap');
 @font-face {
-  font-family: 'BebasNeue-Regular';
-  src: url('../public/images/BebasNeue-Regular.woff2') format('woff2'),
-      url('../public/images/BebasNeue-Regular.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
+	font-family: 'BebasNeue-Regular';
+	src: url('../public/images/BebasNeue-Regular.woff2') format('woff2'),
+		url('../public/images/BebasNeue-Regular.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
 }
 
 html,
 body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-  transition: background 0.5s linear, color 0.5s linear;
+	padding: 0;
+	margin: 0;
+	font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+		Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   background: var(--color-background);
   color: var(--color-text);
+  transition: background 0.5s linear, color 0.5s linear;
 }
 nav {
-  background: var(--color-nav);
-  color: var(--color-text);
-  transition: background 0.5s linear, color 0.5s linear;
+	background: var(--color-nav);
+	color: var(--color-text);
+	transition: background 0.5s linear, color 0.5s linear;
 }
 main {
-  background: var(--color-background);
-  color: var(--color-text);
-
+	background: var(--color-background);
+	color: var(--color-text);
+  transition: background 0.5s linear, color 0.5s linear;
+}
+footer {
+	background: var(--color-background);
+	color: var(--color-text);
+  transition: background 0.5s linear, color 0.5s linear;
 }
 
 svg {
-  transition: all 0.5s linear;
+	transition: all 0.5s linear;
 }
 path {
-  transition: all 0.5s linear;
+	transition: all 0.5s linear;
 }
 
 .icon {
-  display: inline-flex;
-  align-self: center;
+	display: inline-flex;
+	align-self: center;
 }
 
-.icon svg, .icon img {
-  height: 0.8em;
-  fill: currentColor;
+.icon svg,
+.icon img {
+	height: 0.8em;
+	fill: currentColor;
 }
 
-.icon.baseline svg, .icon img {
-  top: .4em;
-  position: relative;
+.icon.baseline svg,
+.icon img {
+	top: 0.4em;
+	position: relative;
 }
 
 .logo-text {
-  /* font-family: 'Solari'; */
-  font-family: 'Sarabun';
-  font-weight: 700;
-  font-size: 35px;
+	/* font-family: 'Solari'; */
+	font-family: 'Sarabun';
+	font-weight: 700;
+	font-size: 35px;
 }
 
 .section-title {
-  /* font-family: 'BebasNeue-Regular'; */
-  /* letter-spacing: 2px; */
-  font-family: 'Sarabun';
-  font-size: 25px;
-  margin-bottom: 10px;
-  display: inline !important;
-  /* text-transform: uppercase; */
+	/* font-family: 'BebasNeue-Regular'; */
+	/* letter-spacing: 2px; */
+	font-family: 'Sarabun';
+	font-size: 25px;
+	margin-bottom: 10px;
+	display: inline !important;
+	/* text-transform: uppercase; */
 }
 
 /* .extra-text {
@@ -80,146 +87,144 @@ path {
 } */
 
 .post-card-title {
-  font-family: 'Sarabun';
-  font-weight: 700;
+	font-family: 'Sarabun';
+	font-weight: 700;
 
-  font-size: 21px;
-  margin-top: -4px;
-  vertical-align: text-top;
+	font-size: 21px;
+	margin-top: -4px;
+	vertical-align: text-top;
 }
 
 .logo-text-finish {
-  font-family: 'Sarabun';
-  /* font-family: 'Solari'; */
-  /* color: white !important; */
-  font-size: 35px;
+	font-family: 'Sarabun';
+	/* font-family: 'Solari'; */
+	/* color: white !important; */
+	font-size: 35px;
 }
 
 .logo-badge {
-  transform: rotate(90deg);
-  /* margin-left: 5px; */
-  margin-right: 5px;
-  /* transition: transform 0.35s linear; */
-  animation-name: FlipUp;
-  animation-duration: 2s;
+	transform: rotate(90deg);
+	/* margin-left: 5px; */
+	margin-right: 5px;
+	/* transition: transform 0.35s linear; */
+	animation-name: FlipUp;
+	animation-duration: 2s;
 }
 
 .logo-badge-rotated {
-  transform: rotate(270deg);
-  /* -webkit-transform: rotate3d(0,1,0,180deg);
+	transform: rotate(270deg);
+	/* -webkit-transform: rotate3d(0,1,0,180deg);
   margin-left: 5px;
   transition: transform 0.35s linear; */
-  /* margin-left: 5px; */
-  margin-bottom: 0;
-  animation-name: FlipDown;
-  animation-duration: 0.8s;
+	/* margin-left: 5px; */
+	margin-bottom: 0;
+	animation-name: FlipDown;
+	animation-duration: 0.8s;
 }
 
 @keyframes FlipDown {
-  from {
-    transform: rotate(90deg);
-    /* margin-left: 5px;
+	from {
+		transform: rotate(90deg);
+		/* margin-left: 5px;
     margin-right: 5px; */
-  }
-  to {
-    transform: rotate(270deg);
-    -webkit-transform: rotate3d(0,1,0,180deg);
-    /* margin-left: 5px;   */
-  }
+	}
+	to {
+		transform: rotate(270deg);
+		-webkit-transform: rotate3d(0, 1, 0, 180deg);
+		/* margin-left: 5px;   */
+	}
 }
 
 h1 {
-  font-family: 'Sarabun';
-  font-weight: 700;
+	font-family: 'Sarabun';
+	font-weight: 700;
 }
 
-h2,h3,h4,h5,h6 {
-  margin: 0;
-  font-size: 12px;
-  font-family: 'Sarabun', sans-serif;
-  font-weight: 400;
+h2,
+h3,
+h4,
+h5,
+h6 {
+	margin: 0;
+	font-size: 12px;
+	font-family: 'Sarabun', sans-serif;
+	font-weight: 400;
 }
 
 p {
-  font-family: 'Merriweather';
-  font-size: 15px;
-  font-weight: 300;
-  padding-bottom: 15px;
+	font-family: 'Merriweather';
+	font-size: 15px;
+	font-weight: 300;
+	padding-bottom: 15px;
 }
 
-.next-link, a {
-  cursor: pointer;
+.next-link,
+a {
+	cursor: pointer;
 }
 
 .post-card-description {
-  min-height: 90px;
-  font-family: 'Inconsolata', monospace;
-  padding-bottom: 15px;
+	min-height: 90px;
+	font-family: 'Inconsolata', monospace;
+	padding-bottom: 15px;
 }
 
 .post-title {
-  font-size: 32px;
-  margin-bottom: 20px;
+	font-size: 32px;
+	margin-bottom: 20px;
 }
 
 .teaser-description {
-  font-family: 'Merriweather';
-  font-style: italic;
+	font-family: 'Merriweather';
+	font-style: italic;
 }
 
 /**
  * Blockquotes
  */
- blockquote {
-  color: gray;
-  border-left: 4px solid gray;
-  padding-left: 20px;
-  /* @include relative-font-size(1.125); */
-  font-size: 14px;
-  letter-spacing: -1px;
-  font-style: italic;
-
+blockquote {
+	color: gray;
+	border-left: 4px solid gray;
+	padding-left: 20px;
+	/* @include relative-font-size(1.125); */
+	font-size: 14px;
+	letter-spacing: -1px;
+	font-style: italic;
 }
 
-ol, ul {}
+ol,
+ul {
+}
 
 a {
-
-  text-decoration: none;
+	text-decoration: none;
 }
 
 * {
-  box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 article {
-  background: var(--color-background);
-  transition: background 0.5s linear, color 0.5s linear;
+	background: var(--color-background);
+	transition: background 0.5s linear, color 0.5s linear;
 }
 section {
-  transition: background 0.5s linear, color 0.5s linear;
+	transition: background 0.5s linear, color 0.5s linear;
 }
 .bannerImage {
-  height: 500px;
-  z-index: 0;
+	height: 500px;
+	z-index: 0;
 }
 .bannerText {
-  position: relative;
-  z-index: 1;
+	position: relative;
+	z-index: 1;
 }
 .bannerContainer {
-  position: relative;
-  height: 500px;
-  margin-bottom: 40px;
-}
-.special-class {
-  background: var(--color-background);
-  color: var(--color-text);
-
+	position: relative;
+	height: 500px;
+	margin-bottom: 40px;
 }
 html {
-  visibility: visible;
-  opacity: 1;
+	visibility: visible;
+	opacity: 1;
 }
-
-

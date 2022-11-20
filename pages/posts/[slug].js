@@ -15,6 +15,9 @@ import PostLayout from '../../layouts/PostLayout.js'
 
 const ContentContainer = styled.div`
 	margin-bottom: 20px;
+	color: var(--color-text);
+	transition: background 0.5s linear, color 0.5s linear;
+
 	p:first-of-type:first-letter {
 		float: left;
 		line-height: 1;
